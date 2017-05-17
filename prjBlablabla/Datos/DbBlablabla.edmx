@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DB_9F97CF_BlablablaSitioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ctFrases">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="enun1" Type="varchar" MaxLength="50" />
+          <Property Name="enun2" Type="varchar" MaxLength="50" />
+          <Property Name="correcta" Type="smallint" Nullable="false" />
+          <Property Name="opcion1" Type="varchar" MaxLength="50" />
+          <Property Name="opcion2" Type="varchar" MaxLength="50" />
+          <Property Name="opcion3" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ctFrasesSilabitos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="c1" Type="varchar" MaxLength="50" />
+          <Property Name="c2" Type="varchar" MaxLength="50" />
+          <Property Name="c3" Type="varchar" MaxLength="50" />
+          <Property Name="p1" Type="varchar" MaxLength="50" />
+          <Property Name="p2" Type="varchar" MaxLength="50" />
+          <Property Name="orden" Type="varchar" MaxLength="50" />
+          <Property Name="acomodo" Type="smallint" />
+        </EntityType>
+        <EntityContainer Name="DB_9F97CF_BlablablaSitioModelStoreContainer">
+          <EntitySet Name="ctFrases" EntityType="Self.ctFrases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ctFrasesSilabitos" EntityType="Self.ctFrasesSilabitos" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DB_9F97CF_BlablablaSitioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BlablablaSitioEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="ctFrases" EntityType="DB_9F97CF_BlablablaSitioModel.ctFrases" />
+          <EntitySet Name="ctFrasesSilabitos" EntityType="DB_9F97CF_BlablablaSitioModel.ctFrasesSilabitos" />
+        </EntityContainer>
+        <EntityType Name="ctFrases">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="enun1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="enun2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="correcta" Type="Int16" Nullable="false" />
+          <Property Name="opcion1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="opcion2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="opcion3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ctFrasesSilabitos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="c1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="c2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="c3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="p1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="p2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="orden" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="acomodo" Type="Int16" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DB_9F97CF_BlablablaSitioModelStoreContainer" CdmEntityContainer="BlablablaSitioEntities" >
+          <EntitySetMapping Name="ctFrases">
+            <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.ctFrases">
+              <MappingFragment StoreEntitySet="ctFrases">
+                <ScalarProperty Name="opcion3" ColumnName="opcion3" />
+                <ScalarProperty Name="opcion2" ColumnName="opcion2" />
+                <ScalarProperty Name="opcion1" ColumnName="opcion1" />
+                <ScalarProperty Name="correcta" ColumnName="correcta" />
+                <ScalarProperty Name="enun2" ColumnName="enun2" />
+                <ScalarProperty Name="enun1" ColumnName="enun1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ctFrasesSilabitos">
+            <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.ctFrasesSilabitos">
+              <MappingFragment StoreEntitySet="ctFrasesSilabitos">
+                <ScalarProperty Name="acomodo" ColumnName="acomodo" />
+                <ScalarProperty Name="orden" ColumnName="orden" />
+                <ScalarProperty Name="p2" ColumnName="p2" />
+                <ScalarProperty Name="p1" ColumnName="p1" />
+                <ScalarProperty Name="c3" ColumnName="c3" />
+                <ScalarProperty Name="c2" ColumnName="c2" />
+                <ScalarProperty Name="c1" ColumnName="c1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
