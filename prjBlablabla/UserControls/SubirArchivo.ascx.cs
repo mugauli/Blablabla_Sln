@@ -1,4 +1,4 @@
-﻿using prjBlablabla.ObjetosXML;
+﻿using prjBlablabla.DTO;
 using System;
 using System.Collections;
 using System.Collections.Generic;

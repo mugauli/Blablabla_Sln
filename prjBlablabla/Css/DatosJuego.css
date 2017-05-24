@@ -1,0 +1,14 @@
+﻿#fraseComunesTable_paginate {
+    margin: 2%;
+}
+.itemHeader {
+    overflow:hidden;
+}
+#btnEditarFrase:hover, #btnBorrarFrase:hover {
+    box-shadow: 3px 3px 18px;
+    opacity: 0.5;
+    cursor: pointer;
+}
+#agregarAsg {
+    margin:2%;
+}

@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using prjBlablabla.ObjetosXML;
 using System.Collections;
 using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Excel = Microsoft.Office.Interop.Excel;
+using prjBlablabla.DTO;
 
 namespace prjBlablabla
 {
@@ -27,6 +27,8 @@ namespace prjBlablabla
                 GuardarArchivo(fileUploader1.PostedFile);
             else
                 MensajeError("Seleccione un archivo del disco duro.");
+
+            lblError.Text = "Archivo cargado con éxito.";
 
         }
 

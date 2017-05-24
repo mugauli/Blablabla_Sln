@@ -45,26 +45,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="AutoMapper.Net4, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.3.0.0\lib\net40\AutoMapper.Net4.dll</HintPath>
-    </Reference>
-    <Reference Include="businesslogic, Version=1.0.5529.18523, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.2\lib\businesslogic.dll</HintPath>
-    </Reference>
     <Reference Include="ClientDependency.Core, Version=1.8.2.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ClientDependency.1.8.2.1\lib\net45\ClientDependency.Core.dll</HintPath>
     </Reference>
     <Reference Include="ClientDependency.Core.Mvc, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ClientDependency-Mvc.1.8.0.0\lib\net45\ClientDependency.Core.Mvc.dll</HintPath>
-    </Reference>
-    <Reference Include="cms, Version=1.0.5529.18524, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.2\lib\cms.dll</HintPath>
-    </Reference>
-    <Reference Include="controls, Version=1.0.5529.18525, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.2\lib\controls.dll</HintPath>
     </Reference>
     <Reference Include="CookComputing.XmlRpcV2, Version=2.5.0.0, Culture=neutral, PublicKeyToken=a7d6e17aa302004d, processorArchitecture=MSIL">
       <HintPath>..\packages\xmlrpcnet.2.5.0\lib\net20\CookComputing.XmlRpcV2.dll</HintPath>
@@ -87,26 +72,20 @@
     <Reference Include="ImageProcessor.Web, Version=3.3.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ImageProcessor.Web.3.3.1.0\lib\net45\ImageProcessor.Web.dll</HintPath>
     </Reference>
-    <Reference Include="interfaces, Version=1.0.5529.18522, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.2\lib\interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="log4net, Version=1.2.11.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.2\lib\log4net.dll</HintPath>
+    <Reference Include="LinqToExcel, Version=1.11.0.0, Culture=neutral, PublicKeyToken=9c8ea65a58f03f1f, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\LinqToExcel.dll</HintPath>
     </Reference>
     <Reference Include="Lucene.Net, Version=2.9.4.1, Culture=neutral, PublicKeyToken=85089178b9ac3181, processorArchitecture=MSIL">
       <HintPath>..\packages\Lucene.Net.2.9.4.1\lib\net40\Lucene.Net.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.ApplicationBlocks.Data, Version=1.0.1559.20655, Culture=neutral">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.2\lib\Microsoft.ApplicationBlocks.Data.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <EmbedInteropTypes>True</EmbedInteropTypes>
-      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>bin\Microsoft.Office.Interop.Excel.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -117,23 +96,36 @@
     <Reference Include="MiniProfiler, Version=2.1.0.0, Culture=neutral, PublicKeyToken=b44f9351044011a3, processorArchitecture=MSIL">
       <HintPath>..\packages\MiniProfiler.2.1.0\lib\net40\MiniProfiler.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.6.5.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
-      <HintPath>..\packages\MySql.Data.6.6.5\lib\net40\MySql.Data.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.6.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SQLCE4Umbraco, Version=1.0.5529.18524, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.2\lib\SQLCE4Umbraco.dll</HintPath>
+    <Reference Include="NPOI, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Reference\NPOI 2.2.1 binary package\Release\Net40\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Reference\NPOI 2.2.1 binary package\Release\Net40\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Reference\NPOI 2.2.1 binary package\Release\Net40\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.2.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Reference\NPOI 2.2.1 binary package\Release\Net40\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Data.Linq, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.Data.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="Remotion.Interfaces, Version=1.13.52.2, Culture=neutral, PublicKeyToken=0669cf0452175907, processorArchitecture=MSIL">
+      <HintPath>..\packages\LinqToExcel.1.11.0\lib\Remotion.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
-    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.2\lib\System.Data.SqlServerCe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Data.SqlServerCe.Entity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.2\lib\System.Data.SqlServerCe.Entity.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -181,40 +173,12 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="TidyNet, Version=1.0.0.0, Culture=neutral">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.2\lib\TidyNet.dll</HintPath>
-    </Reference>
-    <Reference Include="umbraco, Version=1.0.5529.18525, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.2\lib\umbraco.dll</HintPath>
-    </Reference>
-    <Reference Include="Umbraco.Core, Version=1.0.5529.18522, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.2\lib\Umbraco.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="umbraco.DataLayer, Version=1.0.5529.18523, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.2\lib\umbraco.DataLayer.dll</HintPath>
-    </Reference>
-    <Reference Include="umbraco.editorControls, Version=1.0.5529.18526, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.2\lib\umbraco.editorControls.dll</HintPath>
-    </Reference>
-    <Reference Include="umbraco.MacroEngines, Version=1.0.5529.18526, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.2\lib\umbraco.MacroEngines.dll</HintPath>
-    </Reference>
-    <Reference Include="umbraco.providers, Version=1.0.5529.18525, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.2\lib\umbraco.providers.dll</HintPath>
-    </Reference>
-    <Reference Include="Umbraco.Web.UI, Version=1.0.5529.18527, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.2\lib\Umbraco.Web.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UmbracoExamine, Version=0.7.0.18524, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.2\lib\UmbracoExamine.dll</HintPath>
-    </Reference>
-    <Reference Include="UrlRewritingNet.UrlRewriter, Version=2.0.60829.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\UmbracoCms.Core.7.2.2\lib\UrlRewritingNet.UrlRewriter.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Css\custom.css" />
     <Content Include="Css\custom.min.css" />
+    <Content Include="Css\DatosJuego.css" />
+    <Content Include="Css\styleRadioButton.css" />
     <Content Include="DatosJuego.aspx" />
     <Content Include="Datos\DbBlablabla.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -262,6 +226,25 @@
       <DependentUpon>DbBlablabla.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Reference\NPOI 2.2.1 binary package\Release\logo\120_120.jpg" />
+    <Content Include="Reference\NPOI 2.2.1 binary package\Release\logo\240_240.png" />
+    <Content Include="Reference\NPOI 2.2.1 binary package\Release\logo\32_32.jpg" />
+    <Content Include="Reference\NPOI 2.2.1 binary package\Release\logo\60_60.jpg" />
+    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net20\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net20\NPOI.dll" />
+    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net20\NPOI.OOXML.dll" />
+    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net20\NPOI.OpenXml4Net.dll" />
+    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net20\NPOI.OpenXmlFormats.dll" />
+    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net20\NPOI.XML" />
+    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net40\ICSharpCode.SharpZipLib.dll" />
+    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net40\NPOI.dll" />
+    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net40\NPOI.OOXML.dll" />
+    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net40\NPOI.OpenXml4Net.dll" />
+    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net40\NPOI.OpenXmlFormats.dll" />
+    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net40\NPOI.XML" />
+    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Read Me.txt" />
+    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Release Notes.txt" />
+    <Content Include="Scripts\DatosJuego.js" />
     <Content Include="Scripts\Preguntas.js" />
     <Content Include="vendors\animate.css\.bower.json" />
     <Content Include="vendors\animate.css\animate-config.json" />
@@ -294,6 +277,9 @@
     <Content Include="vendors\bootstrap-progressbar\scss\bootstrap-progressbar-3.0.0-3.1.x.scss" />
     <Content Include="vendors\bootstrap-progressbar\scss\bootstrap-progressbar-3.2.0.scss" />
     <Content Include="vendors\bootstrap-progressbar\scss\bootstrap-progressbar-3.3.0-3.x.x.scss" />
+    <Content Include="vendors\bootstrap-select\css\bootstrap-select.css" />
+    <Content Include="vendors\bootstrap-select\css\bootstrap-select.min.css" />
+    <Content Include="vendors\bootstrap-select\js\bootstrap-select.js" />
     <Content Include="vendors\bootstrap-wysiwyg\.bower.json" />
     <Content Include="vendors\bootstrap-wysiwyg\bower.json" />
     <Content Include="vendors\bootstrap-wysiwyg\package.json" />
@@ -1051,6 +1037,8 @@
     <Content Include="vendors\validator\.bower.json" />
     <Content Include="vendors\validator\README.md" />
     <Content Include="vendors\validator\validator.jquery.json" />
+    <Content Include="vendors\bootstrap-select\css\bootstrap-select.css.map" />
+    <Content Include="Reference\NPOI 2.2.1 binary package\Release\LICENSE" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -4454,6 +4442,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DbBlablabla.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Datos\FrasesData.cs" />
+    <Compile Include="DTO\fraseDTO.cs" />
+    <Compile Include="DTO\fraseSilabitosDTO.cs" />
+    <Compile Include="DTO\MethodResponseDTO.cs" />
     <Compile Include="ImportarArchivo.aspx.cs">
       <DependentUpon>ImportarArchivo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4482,11 +4474,6 @@
     <Compile Include="Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
     </Compile>
-    <Compile Include="ObjetosXML\frase.cs" />
-    <Compile Include="ObjetosXML\fraseDTO.cs" />
-    <Compile Include="ObjetosXML\frases.cs" />
-    <Compile Include="ObjetosXML\opcion.cs" />
-    <Compile Include="ObjetosXML\Person.cs" />
     <Compile Include="PorGrupo.aspx.cs">
       <DependentUpon>PorGrupo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4502,7 +4489,6 @@
       <DependentUpon>PorNino.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DatosController.cs" />
     <Compile Include="UserControls\SubirArchivo.ascx.cs">
       <DependentUpon>SubirArchivo.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4510,6 +4496,7 @@
     <Compile Include="UserControls\SubirArchivo.ascx.designer.cs">
       <DependentUpon>SubirArchivo.ascx</DependentUpon>
     </Compile>
+    <Compile Include="WebAPI\DatosJuegoController.cs" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="vendors\moment\moment.d.ts" />

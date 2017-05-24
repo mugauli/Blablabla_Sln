@@ -12,6 +12,9 @@ namespace prjBlablabla.Datos
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Objects;
+    using System.Data.Objects.DataClasses;
+    using System.Linq;
     
     public partial class BlablablaSitioEntities : DbContext
     {
@@ -27,5 +30,14 @@ namespace prjBlablabla.Datos
     
         public DbSet<ctFrases> ctFrases { get; set; }
         public DbSet<ctFrasesSilabitos> ctFrasesSilabitos { get; set; }
+    
+        public virtual int sp_InactivaFrases(Nullable<int> tipo)
+        {
+            var tipoParameter = tipo.HasValue ?
+                new ObjectParameter("tipo", tipo) :
+                new ObjectParameter("tipo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InactivaFrases", tipoParameter);
+        }
     }
 }

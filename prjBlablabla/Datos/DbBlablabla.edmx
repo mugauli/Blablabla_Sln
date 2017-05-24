@@ -16,6 +16,7 @@
           <Property Name="opcion1" Type="varchar" MaxLength="50" />
           <Property Name="opcion2" Type="varchar" MaxLength="50" />
           <Property Name="opcion3" Type="varchar" MaxLength="50" />
+          <Property Name="estado" Type="bit" />
         </EntityType>
         <EntityType Name="ctFrasesSilabitos">
           <Key>
@@ -29,7 +30,11 @@
           <Property Name="p2" Type="varchar" MaxLength="50" />
           <Property Name="orden" Type="varchar" MaxLength="50" />
           <Property Name="acomodo" Type="smallint" />
+          <Property Name="estado" Type="bit" />
         </EntityType>
+        <Function Name="sp_InactivaFrases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="tipo" Type="int" Mode="In" />
+        </Function>
         <EntityContainer Name="DB_9F97CF_BlablablaSitioModelStoreContainer">
           <EntitySet Name="ctFrases" EntityType="Self.ctFrases" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ctFrasesSilabitos" EntityType="Self.ctFrasesSilabitos" Schema="dbo" store:Type="Tables" />
@@ -41,6 +46,9 @@
         <EntityContainer Name="BlablablaSitioEntities" annotation:LazyLoadingEnabled="true" >
           <EntitySet Name="ctFrases" EntityType="DB_9F97CF_BlablablaSitioModel.ctFrases" />
           <EntitySet Name="ctFrasesSilabitos" EntityType="DB_9F97CF_BlablablaSitioModel.ctFrasesSilabitos" />
+          <FunctionImport Name="sp_InactivaFrases">
+            <Parameter Name="tipo" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="ctFrases">
           <Key>
@@ -53,6 +61,7 @@
           <Property Name="opcion1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="opcion2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="opcion3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="Boolean" />
         </EntityType>
         <EntityType Name="ctFrasesSilabitos">
           <Key>
@@ -66,6 +75,7 @@
           <Property Name="p2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="orden" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="acomodo" Type="Int16" />
+          <Property Name="estado" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -76,6 +86,7 @@
           <EntitySetMapping Name="ctFrases">
             <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.ctFrases">
               <MappingFragment StoreEntitySet="ctFrases">
+                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="opcion3" ColumnName="opcion3" />
                 <ScalarProperty Name="opcion2" ColumnName="opcion2" />
                 <ScalarProperty Name="opcion1" ColumnName="opcion1" />
@@ -89,6 +100,7 @@
           <EntitySetMapping Name="ctFrasesSilabitos">
             <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.ctFrasesSilabitos">
               <MappingFragment StoreEntitySet="ctFrasesSilabitos">
+                <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="acomodo" ColumnName="acomodo" />
                 <ScalarProperty Name="orden" ColumnName="orden" />
                 <ScalarProperty Name="p2" ColumnName="p2" />
@@ -100,6 +112,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_InactivaFrases" FunctionName="DB_9F97CF_BlablablaSitioModel.Store.sp_InactivaFrases" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -22,5 +22,6 @@ namespace prjBlablabla.Datos
         public string p2 { get; set; }
         public string orden { get; set; }
         public Nullable<short> acomodo { get; set; }
+        public Nullable<bool> estado { get; set; }
     }
 }

@@ -21,5 +21,6 @@ namespace prjBlablabla.Datos
         public string opcion1 { get; set; }
         public string opcion2 { get; set; }
         public string opcion3 { get; set; }
+        public Nullable<bool> estado { get; set; }
     }
 }

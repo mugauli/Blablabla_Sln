@@ -1,50 +1,60 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Master.master.cs" Inherits="prjBlablabla.Master" %>
 
 
-    <!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!-- Meta, title, CSS, favicons, etc. -->
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <!-- Meta, title, CSS, favicons, etc. -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>El mundo del BlaBlabla</title>
+    <title>El mundo del BlaBlabla</title>
 
-        <!-- Bootstrap -->
-        <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Font Awesome -->
-        <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <!-- NProgress -->
-        <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
-        <!-- iCheck -->
-        <link href="/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <!-- NProgress -->
+    <link href="/vendors/nprogress/nprogress.css" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 
-        <!-- bootstrap-progressbar -->
-        <link href="/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
-        <!-- JQVMap -->
-        <link href="/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
-        <!-- bootstrap-daterangepicker -->
-        <link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <!-- JQVMap -->
+    <link href="/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
+    <!-- bootstrap-daterangepicker -->
+    <link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
 
-        <!-- Custom Theme Style -->
-        <link href="/Css/custom.min.css" rel="stylesheet">
-    </head>
+    <!-- Custom Theme Style -->
+    <link href="/Css/custom.min.css" rel="stylesheet">
 
-    <body class="nav-md">
+
+    <link href="/vendors/iCheck/skins/line/blue.css" rel="stylesheet" />
+    <%-- Bootstrap-select --%>
+    <link href="/vendors/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+    <link href="/Css/styleRadioButton.css" rel="stylesheet" />
+
+    <script src="/vendors/jquery/dist/jquery.min.js"></script>
+
+</head>
+
+<body class="nav-md">
+    <form class="form-horizontal" role="form" id="Form1" runat="server">
         <div class="container body">
             <div class="main_container">
                 <div class="col-md-3 left_col">
                     <div class="left_col scroll-view">
-                       
-						<!--titulo-->
-						<div class="" style="border: 0;">
+
+                        <!--titulo-->
+                        <div class="" style="border: 0;">
                             <a href="/index.aspx" class="">
-							  <div class="title">El Mundo del BlaBlaBla</div>
-							</a>
+                                <div class="title">El Mundo del BlaBlaBla</div>
+                            </a>
                         </div>
-						<!--/titulo-->
+                        <!--/titulo-->
                         <!-- menu profile quick info -->
                         <div class="profile clearfix">
                             <div class="profile_pic">
@@ -64,23 +74,23 @@
                             <div class="menu_section">
                                 <ul class="nav side-menu">
                                     <li>
-                                        <a><i class="fa fa-home"></i> Dashboard <span class="fa fa-chevron-down"></span></a>
+                                        <a><i class="fa fa-home"></i>Dashboard <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="/index.aspx">Escuela</a></li>
                                             <li><a href="/PorNino.aspx">Niño</a></li>
                                             <li><a href="/PorGrupo.aspx">Grupo</a></li>
                                         </ul>
-                                    </li>          
-                                     <li>
-                                        <a><i class="fa fa-settings"></i> Configuración <span class="fa fa-chevron-down"></span></a>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-settings"></i>Configuración <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="/DatosJuego.aspx">Datos del juego</a></li>
                                             <li><a href="/ImportarArchivo.aspx">Importar Configuración</a></li>
                                             <li><a href="/ImportarDatos.aspx">Importar Datos</a></li>
                                         </ul>
-                                    </li>          
-                                    
-                                <!--    <li>
+                                    </li>
+
+                                    <!--    <li>
                                         <a><i class="fa fa-table"></i> Tablas <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="/dashboard/tablas/tablas.aspx">Tables</a></li>
@@ -95,20 +105,20 @@
                                             <li><a href="/dashboard/presentación-de-datos/chart-3.aspx">Chart 3</a></li>
                                             <li><a href="/dashboard/presentación-de-datos/chart-4.aspx">Chart 4</a></li>
                                         </ul>
-                                    </li>   -->                                
+                                    </li>   -->
                                 </ul>
                             </div>
 
 
                         </div>
-                                                <!-- /sidebar menu -->
-                 		<img src="/Images/LOGO-UNAM.png" alt="..." class="imagen_bar">
+                        <!-- /sidebar menu -->
+                        <img src="/Images/LOGO-UNAM.png" alt="..." class="imagen_bar">
 
                         <div class="clearfix"></div>
                         <!-- /menu footer buttons -->
-						
-						
-						
+
+
+
                         <div class="sidebar-footer hidden-small">
                             <a data-toggle="tooltip" data-placement="top" title="Settings">
                                 <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
@@ -126,11 +136,11 @@
                         <!-- /menu footer buttons -->
                     </div>
                 </div>
-                      
+
                 <!-- page content -->
                 <div class="right_col" role="main">
 
-                    <asp:ContentPlaceHolder Id="Body" runat="server">
+                    <asp:ContentPlaceHolder ID="Body" runat="server">
 
                         <!-- Insert default "Body" markup here -->
                     </asp:ContentPlaceHolder>
@@ -147,59 +157,61 @@
                 <!-- /footer content -->
             </div>
         </div>
+    </form>
 
-        <!-- jQuery -->
-        <script src="/vendors/jquery/dist/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-        <!-- FastClick -->
-        <script src="/vendors/fastclick/lib/fastclick.js"></script>
-        <!-- NProgress -->
-        <script src="/vendors/nprogress/nprogress.js"></script>
-        <!-- Chart.js -->
-        <script src="/vendors/Chart.js/dist/Chart.min.js"></script>
-        <!-- gauge.js -->
-        <script src="/vendors/gauge.js/dist/gauge.min.js"></script>
-        <!-- bootstrap-progressbar -->
-        <script src="/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-        <!-- iCheck -->
-        <script src="/vendors/iCheck/icheck.min.js"></script>
-        <!-- Skycons -->
-        <script src="/vendors/skycons/skycons.js"></script>
-        <!-- Flot -->
-        <script src="/vendors/Flot/jquery.flot.js"></script>
-        <script src="/vendors/Flot/jquery.flot.pie.js"></script>
-        <script src="/vendors/Flot/jquery.flot.time.js"></script>
-        <script src="/vendors/Flot/jquery.flot.stack.js"></script>
-        <script src="/vendors/Flot/jquery.flot.resize.js"></script>
-        <!-- Flot plugins -->
-        <script src="/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-        <script src="/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-        <script src="/vendors/flot.curvedlines/curvedLines.js"></script>
-        <!-- DateJS -->
-        <script src="/vendors/DateJS/build/date.js"></script>
-        <!-- JQVMap -->
-        <script src="/vendors/jqvmap/dist/jquery.vmap.js"></script>
-        <script src="/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-        <script src="/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-        <!-- bootstrap-daterangepicker -->
-        <script src="/vendors/moment/min/moment.min.js"></script>
-        <script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- jQuery -->
 
-        <!-- Chart.js -->
-        <script src="/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="/vendors/nprogress/nprogress.js"></script>
+    <!-- Chart.js -->
+    <script src="/vendors/Chart.js/dist/Chart.min.js"></script>
+    <!-- gauge.js -->
+    <script src="/vendors/gauge.js/dist/gauge.min.js"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+    <!-- iCheck -->
+    <script src="/vendors/iCheck/icheck.min.js"></script>
+    <!-- Skycons -->
+    <script src="/vendors/skycons/skycons.js"></script>
+    <!-- Flot -->
+    <script src="/vendors/Flot/jquery.flot.js"></script>
+    <script src="/vendors/Flot/jquery.flot.pie.js"></script>
+    <script src="/vendors/Flot/jquery.flot.time.js"></script>
+    <script src="/vendors/Flot/jquery.flot.stack.js"></script>
+    <script src="/vendors/Flot/jquery.flot.resize.js"></script>
+    <!-- Flot plugins -->
+    <script src="/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+    <script src="/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+    <script src="/vendors/flot.curvedlines/curvedLines.js"></script>
+    <!-- DateJS -->
+    <script src="/vendors/DateJS/build/date.js"></script>
+    <!-- JQVMap -->
+    <script src="/vendors/jqvmap/dist/jquery.vmap.js"></script>
+    <script src="/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+    <script src="/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="/vendors/moment/min/moment.min.js"></script>
+    <script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-        <!-- morris.js -->
-        <script src="/vendors/raphael/raphael.min.js"></script>
-        <script src="/vendors/morris.js/morris.min.js"></script>
+    <!-- Chart.js -->
+    <script src="/vendors/Chart.js/dist/Chart.min.js"></script>
 
-        <!-- ECharts -->
-        <script src="/vendors/echarts/dist/echarts.min.js"></script>
-        <script src="/vendors/echarts/map/js/world.js"></script>
+    <!-- morris.js -->
+    <script src="/vendors/raphael/raphael.min.js"></script>
+    <script src="/vendors/morris.js/morris.min.js"></script>
 
-        <!-- Custom Theme Scripts -->
-        <script src="/Scripts/custom.min.js"></script>
+    <!-- ECharts -->
+    <script src="/vendors/echarts/dist/echarts.min.js"></script>
+    <script src="/vendors/echarts/map/js/world.js"></script>
 
-    </body>
+    <!-- Custom Theme Scripts -->
+    <script src="/Scripts/custom.min.js"></script>
+
+   
+</body>
 </html>
 
