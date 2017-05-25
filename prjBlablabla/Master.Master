@@ -82,14 +82,39 @@
                                         </ul>
                                     </li>
                                     <li>
-                                        <a><i class="fa fa-settings"></i>Configuración <span class="fa fa-chevron-down"></span></a>
+                                        <a><i class="fa fa-settings"></i>Configuración Nivel 1<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="/DatosJuego.aspx">Datos del juego</a></li>
                                             <li><a href="/ImportarArchivo.aspx">Importar Configuración</a></li>
+                                            
+                                        </ul>
+                                        <a><i class="fa fa-settings"></i>Configuración Nivel 2<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="/DatosJuego.aspx">Datos del juego</a></li>
+                                            <li><a href="/ImportarArchivo.aspx">Importar Configuración</a></li>
+                                            
+                                        </ul>
+                                        <a><i class="fa fa-settings"></i>Configuración Nivel 3<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="/DatosJuego.aspx">Datos del juego</a></li>
+                                            <li><a href="/ImportarArchivo.aspx">Importar Configuración</a></li>
+                                            
+                                        </ul>
+                                    </li>
+                                   
+                                   
+                                    <li>
+                                        <a><i class="fa fa-settings"></i>Carga de datos estadísticos <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
                                             <li><a href="/ImportarDatos.aspx">Importar Datos</a></li>
                                         </ul>
                                     </li>
-
+                                    <li>
+                                        <a><i class="fa fa-settings"></i>Dar de alta escuela <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="/ImportarDatos.aspx">Importar Datos</a></li>
+                                        </ul>
+                                    </li>
                                     <!--    <li>
                                         <a><i class="fa fa-table"></i> Tablas <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">

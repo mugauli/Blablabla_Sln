@@ -24,7 +24,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
+    <TypeScriptToolsVersion>2.2</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -4443,6 +4443,8 @@
       <DependentUpon>DbBlablabla.edmx</DependentUpon>
     </Compile>
     <Compile Include="Datos\FrasesData.cs" />
+    <Compile Include="DTO\AlumnoDTO.cs" />
+    <Compile Include="DTO\EscuelaDTO.cs" />
     <Compile Include="DTO\fraseDTO.cs" />
     <Compile Include="DTO\fraseSilabitosDTO.cs" />
     <Compile Include="DTO\MethodResponseDTO.cs" />

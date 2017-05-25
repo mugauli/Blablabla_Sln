@@ -5,8 +5,11 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="f8b0865f31d24f02bababc450f797b19" Name="Diagram1" >
-        <EntityTypeShape EntityType="DB_9F97CF_BlablablaSitioModel.ctFrases" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_9F97CF_BlablablaSitioModel.ctFrases" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_9F97CF_BlablablaSitioModel.ctFrasesSilabitos" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="DB_9F97CF_BlablablaSitioModel.Alumnos" Width="1.5" PointX="3" PointY="5" />
+        <EntityTypeShape EntityType="DB_9F97CF_BlablablaSitioModel.Escuelas" Width="1.5" PointX="0.75" PointY="5.25" />
+        <AssociationConnector Association="DB_9F97CF_BlablablaSitioModel.FK_Alumnos_Escuelas" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
