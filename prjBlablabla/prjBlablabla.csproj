@@ -4421,6 +4421,9 @@
     <Compile Include="DatosJuego.aspx.designer.cs">
       <DependentUpon>DatosJuego.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Datos\Alumnos.cs">
+      <DependentUpon>DbBlablabla.tt</DependentUpon>
+    </Compile>
     <Compile Include="Datos\ctFrases.cs">
       <DependentUpon>DbBlablabla.tt</DependentUpon>
     </Compile>
@@ -4441,6 +4444,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DbBlablabla.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\Escuelas.cs">
+      <DependentUpon>DbBlablabla.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\FrasesData.cs" />
     <Compile Include="DTO\AlumnoDTO.cs" />
