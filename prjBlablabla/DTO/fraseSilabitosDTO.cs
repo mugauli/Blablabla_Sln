@@ -15,5 +15,6 @@ namespace prjBlablabla.DTO
         public string p2 { get; set; }
         public string orden { get; set; }
         public Nullable<short> acomodo { get; set; }
+        public int nivel { get; set; }
     }
 }

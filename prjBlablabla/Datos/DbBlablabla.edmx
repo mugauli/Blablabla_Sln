@@ -5,6 +5,18 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DB_9F97CF_BlablablaSitioModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Alumnos">
+          <Key>
+            <PropertyRef Name="Id_alumnos" />
+          </Key>
+          <Property Name="Id_alumnos" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Id_escuela_alumnos" Type="int" />
+          <Property Name="nombre_alumnos" Type="varchar" MaxLength="50" />
+          <Property Name="apellidoP_alumnos" Type="varchar" MaxLength="50" />
+          <Property Name="apellidoM_alumnos" Type="varchar" MaxLength="50" />
+          <Property Name="fecha_nac_alumnos" Type="date" />
+          <Property Name="no_lista_alumnos" Type="int" />
+        </EntityType>
         <EntityType Name="ctFrases">
           <Key>
             <PropertyRef Name="Id" />
@@ -17,6 +29,7 @@
           <Property Name="opcion2" Type="varchar" MaxLength="50" />
           <Property Name="opcion3" Type="varchar" MaxLength="50" />
           <Property Name="estado" Type="bit" />
+          <Property Name="nivel" Type="int" />
         </EntityType>
         <EntityType Name="ctFrasesSilabitos">
           <Key>
@@ -31,13 +44,41 @@
           <Property Name="orden" Type="varchar" MaxLength="50" />
           <Property Name="acomodo" Type="smallint" />
           <Property Name="estado" Type="bit" />
+          <Property Name="nivel" Type="int" />
         </EntityType>
+        <EntityType Name="Escuelas">
+          <Key>
+            <PropertyRef Name="Id_escuelas" />
+          </Key>
+          <Property Name="Id_escuelas" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre_escuelas" Type="varchar" MaxLength="500" />
+          <Property Name="grado_escuelas" Type="varchar" MaxLength="50" />
+          <Property Name="grupo_escuelas" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Alumnos_Escuelas">
+          <End Role="Escuelas" Type="Self.Escuelas" Multiplicity="0..1" />
+          <End Role="Alumnos" Type="Self.Alumnos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Escuelas">
+              <PropertyRef Name="Id_escuelas" />
+            </Principal>
+            <Dependent Role="Alumnos">
+              <PropertyRef Name="Id_escuela_alumnos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="sp_InactivaFrases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="tipo" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="DB_9F97CF_BlablablaSitioModelStoreContainer">
+          <EntitySet Name="Alumnos" EntityType="Self.Alumnos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ctFrases" EntityType="Self.ctFrases" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ctFrasesSilabitos" EntityType="Self.ctFrasesSilabitos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Escuelas" EntityType="Self.Escuelas" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Alumnos_Escuelas" Association="Self.FK_Alumnos_Escuelas">
+            <End Role="Escuelas" EntitySet="Escuelas" />
+            <End Role="Alumnos" EntitySet="Alumnos" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -47,8 +88,14 @@
           <EntitySet Name="ctFrases" EntityType="DB_9F97CF_BlablablaSitioModel.ctFrases" />
           <EntitySet Name="ctFrasesSilabitos" EntityType="DB_9F97CF_BlablablaSitioModel.ctFrasesSilabitos" />
           <FunctionImport Name="sp_InactivaFrases">
-            <Parameter Name="tipo" Mode="In" Type="Int32" />
+          <Parameter Name="tipo" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="Alumnos" EntityType="DB_9F97CF_BlablablaSitioModel.Alumnos" />
+          <EntitySet Name="Escuelas" EntityType="DB_9F97CF_BlablablaSitioModel.Escuelas" />
+          <AssociationSet Name="FK_Alumnos_Escuelas" Association="DB_9F97CF_BlablablaSitioModel.FK_Alumnos_Escuelas">
+            <End Role="Escuelas" EntitySet="Escuelas" />
+            <End Role="Alumnos" EntitySet="Alumnos" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="ctFrases">
           <Key>
@@ -62,6 +109,7 @@
           <Property Name="opcion2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="opcion3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="estado" Type="Boolean" />
+          <Property Name="nivel" Type="Int32" />
         </EntityType>
         <EntityType Name="ctFrasesSilabitos">
           <Key>
@@ -76,7 +124,43 @@
           <Property Name="orden" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="acomodo" Type="Int16" />
           <Property Name="estado" Type="Boolean" />
+          <Property Name="nivel" Type="Int32" />
         </EntityType>
+        <EntityType Name="Alumnos">
+          <Key>
+            <PropertyRef Name="Id_alumnos" />
+          </Key>
+          <Property Name="Id_alumnos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_escuela_alumnos" Type="Int32" />
+          <Property Name="nombre_alumnos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoP_alumnos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoM_alumnos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_nac_alumnos" Type="DateTime" Precision="0" />
+          <Property Name="no_lista_alumnos" Type="Int32" />
+          <NavigationProperty Name="Escuelas" Relationship="DB_9F97CF_BlablablaSitioModel.FK_Alumnos_Escuelas" FromRole="Alumnos" ToRole="Escuelas" />
+        </EntityType>
+        <EntityType Name="Escuelas">
+          <Key>
+            <PropertyRef Name="Id_escuelas" />
+          </Key>
+          <Property Name="Id_escuelas" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre_escuelas" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="grado_escuelas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="grupo_escuelas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Alumnos" Relationship="DB_9F97CF_BlablablaSitioModel.FK_Alumnos_Escuelas" FromRole="Escuelas" ToRole="Alumnos" />
+        </EntityType>
+        <Association Name="FK_Alumnos_Escuelas">
+          <End Type="DB_9F97CF_BlablablaSitioModel.Escuelas" Role="Escuelas" Multiplicity="0..1" />
+          <End Type="DB_9F97CF_BlablablaSitioModel.Alumnos" Role="Alumnos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Escuelas">
+              <PropertyRef Name="Id_escuelas" />
+            </Principal>
+            <Dependent Role="Alumnos">
+              <PropertyRef Name="Id_escuela_alumnos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -86,6 +170,7 @@
           <EntitySetMapping Name="ctFrases">
             <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.ctFrases">
               <MappingFragment StoreEntitySet="ctFrases">
+                <ScalarProperty Name="nivel" ColumnName="nivel" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="opcion3" ColumnName="opcion3" />
                 <ScalarProperty Name="opcion2" ColumnName="opcion2" />
@@ -100,6 +185,7 @@
           <EntitySetMapping Name="ctFrasesSilabitos">
             <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.ctFrasesSilabitos">
               <MappingFragment StoreEntitySet="ctFrasesSilabitos">
+                <ScalarProperty Name="nivel" ColumnName="nivel" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="acomodo" ColumnName="acomodo" />
                 <ScalarProperty Name="orden" ColumnName="orden" />
@@ -113,6 +199,29 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_InactivaFrases" FunctionName="DB_9F97CF_BlablablaSitioModel.Store.sp_InactivaFrases" />
+          <EntitySetMapping Name="Alumnos">
+            <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.Alumnos">
+              <MappingFragment StoreEntitySet="Alumnos">
+                <ScalarProperty Name="no_lista_alumnos" ColumnName="no_lista_alumnos" />
+                <ScalarProperty Name="fecha_nac_alumnos" ColumnName="fecha_nac_alumnos" />
+                <ScalarProperty Name="apellidoM_alumnos" ColumnName="apellidoM_alumnos" />
+                <ScalarProperty Name="apellidoP_alumnos" ColumnName="apellidoP_alumnos" />
+                <ScalarProperty Name="nombre_alumnos" ColumnName="nombre_alumnos" />
+                <ScalarProperty Name="Id_escuela_alumnos" ColumnName="Id_escuela_alumnos" />
+                <ScalarProperty Name="Id_alumnos" ColumnName="Id_alumnos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Escuelas">
+            <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.Escuelas">
+              <MappingFragment StoreEntitySet="Escuelas">
+                <ScalarProperty Name="grupo_escuelas" ColumnName="grupo_escuelas" />
+                <ScalarProperty Name="grado_escuelas" ColumnName="grado_escuelas" />
+                <ScalarProperty Name="nombre_escuelas" ColumnName="nombre_escuelas" />
+                <ScalarProperty Name="Id_escuelas" ColumnName="Id_escuelas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

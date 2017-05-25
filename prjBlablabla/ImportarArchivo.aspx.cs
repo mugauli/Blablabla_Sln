@@ -156,7 +156,7 @@ namespace prjBlablabla
                         objFrase.opcion1 = row[4].ToString();
                         objFrase.opcion2 = row[5].ToString();
                         objFrase.opcion3 = row[6].ToString();
-
+                        objFrase.nivel = int.Parse(row[7].ToString());
                         fracesLts.Add(objFrase);
                         cont++;
 
@@ -215,7 +215,7 @@ namespace prjBlablabla
                     objFrase.p1 = ((Excel.Range)range.Cells[i, 6]).Text;
                     objFrase.orden = ((Excel.Range)range.Cells[i, 7]).Text;
                     objFrase.acomodo = short.Parse(((Excel.Range)range.Cells[i, 8]).Text);
-
+                    objFrase.nivel = int.Parse(((Excel.Range)range.Cells[i, 9]).Text);
                     fracesLts.Add(objFrase);
                     cont++;
 

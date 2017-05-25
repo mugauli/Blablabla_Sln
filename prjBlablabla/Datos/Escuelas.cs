@@ -15,28 +15,28 @@ namespace prjBlablabla.Datos
 using System;
     using System.Collections.Generic;
     
-public partial class ctFrasesSilabitos
+public partial class Escuelas
 {
 
-    public int Id { get; set; }
+    public Escuelas()
+    {
 
-    public string c1 { get; set; }
+        this.Alumnos = new HashSet<Alumnos>();
 
-    public string c2 { get; set; }
+    }
 
-    public string c3 { get; set; }
 
-    public string p1 { get; set; }
+    public int Id_escuelas { get; set; }
 
-    public string p2 { get; set; }
+    public string nombre_escuelas { get; set; }
 
-    public string orden { get; set; }
+    public string grado_escuelas { get; set; }
 
-    public Nullable<short> acomodo { get; set; }
+    public string grupo_escuelas { get; set; }
 
-    public Nullable<bool> estado { get; set; }
 
-    public Nullable<int> nivel { get; set; }
+
+    public virtual ICollection<Alumnos> Alumnos { get; set; }
 
 }
 
