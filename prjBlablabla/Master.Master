@@ -86,23 +86,26 @@
                                         <ul class="nav child_menu">
                                             <li><a href="/DatosJuego.aspx">Datos del juego</a></li>
                                             <li><a href="/ImportarArchivo.aspx">Importar Configuración</a></li>
-                                            
                                         </ul>
+                                    </li>
+                                    <li>
                                         <a><i class="fa fa-settings"></i>Configuración Nivel 2<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="/DatosJuego.aspx">Datos del juego</a></li>
                                             <li><a href="/ImportarArchivo.aspx">Importar Configuración</a></li>
-                                            
                                         </ul>
+                                    </li>
+                                    <li>
                                         <a><i class="fa fa-settings"></i>Configuración Nivel 3<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="/DatosJuego.aspx">Datos del juego</a></li>
                                             <li><a href="/ImportarArchivo.aspx">Importar Configuración</a></li>
-                                            
+
                                         </ul>
                                     </li>
-                                   
-                                   
+
+
+
                                     <li>
                                         <a><i class="fa fa-settings"></i>Carga de datos estadísticos <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
@@ -236,7 +239,7 @@
     <!-- Custom Theme Scripts -->
     <script src="/Scripts/custom.min.js"></script>
 
-   
+
 </body>
 </html>
 
