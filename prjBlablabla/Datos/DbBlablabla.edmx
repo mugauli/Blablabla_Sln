@@ -30,6 +30,7 @@
           <Property Name="opcion3" Type="varchar" MaxLength="50" />
           <Property Name="estado" Type="bit" />
           <Property Name="nivel" Type="int" />
+          <Property Name="juego" Type="int" />
         </EntityType>
         <EntityType Name="ctFrasesSilabitos">
           <Key>
@@ -110,6 +111,7 @@
           <Property Name="opcion3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="estado" Type="Boolean" />
           <Property Name="nivel" Type="Int32" />
+          <Property Name="juego" Type="Int32" />
         </EntityType>
         <EntityType Name="ctFrasesSilabitos">
           <Key>
@@ -170,6 +172,7 @@
           <EntitySetMapping Name="ctFrases">
             <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.ctFrases">
               <MappingFragment StoreEntitySet="ctFrases">
+                <ScalarProperty Name="juego" ColumnName="juego" />
                 <ScalarProperty Name="nivel" ColumnName="nivel" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="opcion3" ColumnName="opcion3" />

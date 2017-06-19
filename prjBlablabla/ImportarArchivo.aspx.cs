@@ -23,7 +23,9 @@ namespace prjBlablabla
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //Se agrega la propiedad para evitar recibir basura.
+            levelId.Attributes.Add("readonly", "readonly");
+            gameId.Attributes.Add("readonly", "readonly");
         }
 
         protected void cargarImagen_Click(object sender, EventArgs e)
@@ -156,7 +158,8 @@ namespace prjBlablabla
                         objFrase.opcion1 = row[4].ToString();
                         objFrase.opcion2 = row[5].ToString();
                         objFrase.opcion3 = row[6].ToString();
-                        objFrase.nivel = int.Parse(row[7].ToString());
+                        objFrase.nivel = findID(levelId.Text);
+                        objFrase.juego = findID(gameId.Text);
                         fracesLts.Add(objFrase);
                         cont++;
 
@@ -291,6 +294,17 @@ namespace prjBlablabla
             dataSet1.Tables.Add(dt);
         }
 
+        /// <summary>
+        /// Busca el Numero del Juego o Nivel sore la cadena de texto recibida ej: "Juego 3"  -> 3 
+        /// </summary>
+        /// <param name="fullText">Texto recibido, tomado del control</param>
+        /// <returns>Nivel / Juego</returns>
+        static int findID(string fullText)
+        {
+            string searchID = fullText.Substring(5).Trim();
+            return Convert.ToInt32(searchID);
+
+        }
         #endregion
     }
 }

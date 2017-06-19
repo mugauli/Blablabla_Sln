@@ -24,7 +24,7 @@ namespace prjBlablabla.Datos
 
 
 
-                        var frase = DbFrasesLts.Where(x => x.Id == objFrase.Id).ToList();
+                        var frase = DbFrasesLts.Where(x => x.Id == objFrase.Id && x.nivel == objFrase.nivel && x.juego == objFrase.juego).ToList();
 
                         if (frase.Count > 0)
                         {
@@ -35,6 +35,8 @@ namespace prjBlablabla.Datos
                             DbFrase.opcion1 = objFrase.opcion1;
                             DbFrase.opcion2 = objFrase.opcion2;
                             DbFrase.opcion3 = objFrase.opcion3;
+                            DbFrase.nivel = objFrase.nivel;
+                            DbFrase.juego = objFrase.juego;
                             DbFrase.estado = true;
                             context.SaveChanges();
 
@@ -51,6 +53,8 @@ namespace prjBlablabla.Datos
                                 opcion1 = objFrase.opcion1,
                                 opcion2 = objFrase.opcion2,
                                 opcion3 = objFrase.opcion3,
+                                nivel = objFrase.nivel,
+                                juego = objFrase.juego,
                                 estado = true
                             };
                             context.ctFrases.Add(objCtFrase);

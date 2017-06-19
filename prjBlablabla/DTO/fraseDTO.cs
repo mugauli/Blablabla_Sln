@@ -15,5 +15,6 @@ namespace prjBlablabla.DTO
         public string opcion2 { get; set; }
         public string opcion3 { get; set; }
         public int nivel { get; set; }
+        public int juego { get; set; }
     }
 }
