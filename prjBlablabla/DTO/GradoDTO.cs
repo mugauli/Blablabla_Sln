@@ -5,11 +5,10 @@ using System.Web;
 
 namespace prjBlablabla.DTO
 {
-    public class EscuelaDTO
+    public class GradoDTO
     {
         public int ID { get; set; }
-        public string Nombre { get; set; }
-        public string Direccion { get; set; }
-        
+        public int Grado { get; set; }
+        public string Descripcion { get; set; }
     }
 }

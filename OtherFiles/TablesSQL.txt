@@ -1,0 +1,34 @@
+CREATE TABLE Escuela (
+    ID int IDENTITY(1,1) PRIMARY KEY,
+    Nombre varchar(255) NOT NULL,
+    Dirección varchar(255)
+);
+
+CREATE TABLE Grado (
+    ID int IDENTITY(1,1) PRIMARY KEY,
+	Grado int NOT NULL,
+    Descripción varchar(255)
+);
+
+CREATE TABLE Grupo (
+	ID int IDENTITY(1,1) PRIMARY KEY,
+	Nombre varchar(255) NOT NULL,
+    EscuelaID int NOT NULL,
+    GradoID int NOT NULL,
+
+    CONSTRAINT FK_EscuelaGrupo FOREIGN KEY (EscuelaID)
+    REFERENCES Escuela(ID),
+
+	CONSTRAINT FK_GradoGrupo FOREIGN KEY (GradoID)
+    REFERENCES Grado(ID)
+
+);
+
+
+
+insert into Grado values (1,'Primero');
+insert into Grado values (2,'Segundo');
+insert into Grado values (3,'Tercero');
+insert into Grado values (4,'Cuarto');
+insert into Grado values (5,'Quinto');
+insert into Grado values (6,'Sexto');

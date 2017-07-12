@@ -47,6 +47,14 @@
           <Property Name="estado" Type="bit" />
           <Property Name="nivel" Type="int" />
         </EntityType>
+        <EntityType Name="Escuela">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Dirección" Type="varchar" MaxLength="255" />
+        </EntityType>
         <EntityType Name="Escuelas">
           <Key>
             <PropertyRef Name="Id_escuelas" />
@@ -55,6 +63,43 @@
           <Property Name="nombre_escuelas" Type="varchar" MaxLength="500" />
           <Property Name="grado_escuelas" Type="varchar" MaxLength="50" />
           <Property Name="grupo_escuelas" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Grado">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Grado" Type="int" Nullable="false" />
+          <Property Name="Descripción" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Grupo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="EscuelaID" Type="int" Nullable="false" />
+          <Property Name="GradoID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Resultados">
+          <Key>
+            <PropertyRef Name="IdEscuela" />
+            <PropertyRef Name="NLista" />
+            <PropertyRef Name="Grado" />
+            <PropertyRef Name="Grupo" />
+            <PropertyRef Name="IdJuego" />
+            <PropertyRef Name="Nivel" />
+            <PropertyRef Name="Consecutivo" />
+          </Key>
+          <Property Name="IdEscuela" Type="int" Nullable="false" />
+          <Property Name="NLista" Type="int" Nullable="false" />
+          <Property Name="Grado" Type="int" Nullable="false" />
+          <Property Name="Grupo" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdJuego" Type="int" Nullable="false" />
+          <Property Name="Nivel" Type="int" Nullable="false" />
+          <Property Name="Consecutivo" Type="int" Nullable="false" />
+          <Property Name="Correcto" Type="int" />
+          <Property Name="Incorrecto" Type="int" />
         </EntityType>
         <Association Name="FK_Alumnos_Escuelas">
           <End Role="Escuelas" Type="Self.Escuelas" Multiplicity="0..1" />
@@ -68,6 +113,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_EscuelaGrupo">
+          <End Role="Escuela" Type="Self.Escuela" Multiplicity="1" />
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Escuela">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Grupo">
+              <PropertyRef Name="EscuelaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GradoGrupo">
+          <End Role="Grado" Type="Self.Grado" Multiplicity="1" />
+          <End Role="Grupo" Type="Self.Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grado">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Grupo">
+              <PropertyRef Name="GradoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="sp_AddResultado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEscuela" Type="int" Mode="In" />
+          <Parameter Name="NLista" Type="int" Mode="In" />
+          <Parameter Name="Grado" Type="int" Mode="In" />
+          <Parameter Name="Grupo" Type="varchar" Mode="In" />
+          <Parameter Name="IdJuego" Type="int" Mode="In" />
+          <Parameter Name="Nivel" Type="int" Mode="In" />
+          <Parameter Name="Consecutivo" Type="int" Mode="In" />
+          <Parameter Name="Resultado" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_InactivaFrases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="tipo" Type="int" Mode="In" />
         </Function>
@@ -75,10 +154,22 @@
           <EntitySet Name="Alumnos" EntityType="Self.Alumnos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ctFrases" EntityType="Self.ctFrases" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ctFrasesSilabitos" EntityType="Self.ctFrasesSilabitos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Escuela" EntityType="Self.Escuela" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Escuelas" EntityType="Self.Escuelas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grado" EntityType="Self.Grado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grupo" EntityType="Self.Grupo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Resultados" EntityType="Self.Resultados" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Alumnos_Escuelas" Association="Self.FK_Alumnos_Escuelas">
             <End Role="Escuelas" EntitySet="Escuelas" />
             <End Role="Alumnos" EntitySet="Alumnos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EscuelaGrupo" Association="Self.FK_EscuelaGrupo">
+            <End Role="Escuela" EntitySet="Escuela" />
+            <End Role="Grupo" EntitySet="Grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GradoGrupo" Association="Self.FK_GradoGrupo">
+            <End Role="Grado" EntitySet="Grado" />
+            <End Role="Grupo" EntitySet="Grupo" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -97,6 +188,28 @@
             <End Role="Escuelas" EntitySet="Escuelas" />
             <End Role="Alumnos" EntitySet="Alumnos" />
           </AssociationSet>
+          <EntitySet Name="Escuela" EntityType="DB_9F97CF_BlablablaSitioModel.Escuela" />
+          <EntitySet Name="Grado" EntityType="DB_9F97CF_BlablablaSitioModel.Grado" />
+          <EntitySet Name="Grupo" EntityType="DB_9F97CF_BlablablaSitioModel.Grupo" />
+          <AssociationSet Name="FK_EscuelaGrupo" Association="DB_9F97CF_BlablablaSitioModel.FK_EscuelaGrupo">
+            <End Role="Escuela" EntitySet="Escuela" />
+            <End Role="Grupo" EntitySet="Grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GradoGrupo" Association="DB_9F97CF_BlablablaSitioModel.FK_GradoGrupo">
+            <End Role="Grado" EntitySet="Grado" />
+            <End Role="Grupo" EntitySet="Grupo" />
+          </AssociationSet>
+          <FunctionImport Name="sp_AddResultado">
+            <Parameter Name="IdEscuela" Mode="In" Type="Int32" />
+            <Parameter Name="NLista" Mode="In" Type="Int32" />
+            <Parameter Name="Grado" Mode="In" Type="Int32" />
+            <Parameter Name="Grupo" Mode="In" Type="String" />
+            <Parameter Name="IdJuego" Mode="In" Type="Int32" />
+            <Parameter Name="Nivel" Mode="In" Type="Int32" />
+            <Parameter Name="Consecutivo" Mode="In" Type="Int32" />
+            <Parameter Name="Resultado" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="Resultados" EntityType="DB_9F97CF_BlablablaSitioModel.Resultados" />
         </EntityContainer>
         <EntityType Name="ctFrases">
           <Key>
@@ -163,6 +276,79 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Escuela">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Dirección" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Grupo" Relationship="DB_9F97CF_BlablablaSitioModel.FK_EscuelaGrupo" FromRole="Escuela" ToRole="Grupo" />
+        </EntityType>
+        <EntityType Name="Grado">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Grado1" Type="Int32" Nullable="false" />
+          <Property Name="Descripción" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Grupo" Relationship="DB_9F97CF_BlablablaSitioModel.FK_GradoGrupo" FromRole="Grado" ToRole="Grupo" />
+        </EntityType>
+        <EntityType Name="Grupo">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EscuelaID" Type="Int32" Nullable="false" />
+          <Property Name="GradoID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Escuela" Relationship="DB_9F97CF_BlablablaSitioModel.FK_EscuelaGrupo" FromRole="Grupo" ToRole="Escuela" />
+          <NavigationProperty Name="Grado" Relationship="DB_9F97CF_BlablablaSitioModel.FK_GradoGrupo" FromRole="Grupo" ToRole="Grado" />
+        </EntityType>
+        <Association Name="FK_EscuelaGrupo">
+          <End Type="DB_9F97CF_BlablablaSitioModel.Escuela" Role="Escuela" Multiplicity="1" />
+          <End Type="DB_9F97CF_BlablablaSitioModel.Grupo" Role="Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Escuela">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Grupo">
+              <PropertyRef Name="EscuelaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GradoGrupo">
+          <End Type="DB_9F97CF_BlablablaSitioModel.Grado" Role="Grado" Multiplicity="1" />
+          <End Type="DB_9F97CF_BlablablaSitioModel.Grupo" Role="Grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Grado">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Grupo">
+              <PropertyRef Name="GradoID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Resultados">
+          <Key>
+            <PropertyRef Name="IdEscuela" />
+            <PropertyRef Name="NLista" />
+            <PropertyRef Name="Grado" />
+            <PropertyRef Name="Grupo" />
+            <PropertyRef Name="IdJuego" />
+            <PropertyRef Name="Nivel" />
+            <PropertyRef Name="Consecutivo" />
+          </Key>
+          <Property Name="IdEscuela" Type="Int32" Nullable="false" />
+          <Property Name="NLista" Type="Int32" Nullable="false" />
+          <Property Name="Grado" Type="Int32" Nullable="false" />
+          <Property Name="Grupo" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IdJuego" Type="Int32" Nullable="false" />
+          <Property Name="Nivel" Type="Int32" Nullable="false" />
+          <Property Name="Consecutivo" Type="Int32" Nullable="false" />
+          <Property Name="Correcto" Type="Int32" />
+          <Property Name="Incorrecto" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -222,6 +408,50 @@
                 <ScalarProperty Name="grado_escuelas" ColumnName="grado_escuelas" />
                 <ScalarProperty Name="nombre_escuelas" ColumnName="nombre_escuelas" />
                 <ScalarProperty Name="Id_escuelas" ColumnName="Id_escuelas" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Escuela">
+            <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.Escuela">
+              <MappingFragment StoreEntitySet="Escuela">
+                <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grado">
+            <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.Grado">
+              <MappingFragment StoreEntitySet="Grado">
+                <ScalarProperty Name="Descripción" ColumnName="Descripción" />
+                <ScalarProperty Name="Grado1" ColumnName="Grado" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grupo">
+            <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.Grupo">
+              <MappingFragment StoreEntitySet="Grupo">
+                <ScalarProperty Name="GradoID" ColumnName="GradoID" />
+                <ScalarProperty Name="EscuelaID" ColumnName="EscuelaID" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_AddResultado" FunctionName="DB_9F97CF_BlablablaSitioModel.Store.sp_AddResultado" />
+          <EntitySetMapping Name="Resultados">
+            <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.Resultados">
+              <MappingFragment StoreEntitySet="Resultados">
+                <ScalarProperty Name="Incorrecto" ColumnName="Incorrecto" />
+                <ScalarProperty Name="Correcto" ColumnName="Correcto" />
+                <ScalarProperty Name="Consecutivo" ColumnName="Consecutivo" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="IdJuego" ColumnName="IdJuego" />
+                <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+                <ScalarProperty Name="Grado" ColumnName="Grado" />
+                <ScalarProperty Name="NLista" ColumnName="NLista" />
+                <ScalarProperty Name="IdEscuela" ColumnName="IdEscuela" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

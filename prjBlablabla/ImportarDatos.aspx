@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="ImportarDatos.aspx.cs" Inherits="prjBlablabla.ImportarDatos" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="ImportarDatos.aspx.cs" Inherits="prjBlablabla.ImportarDatos"%>
 <asp:Content ID="Content1" ContentPlaceHolderID="Body" runat="server">   
      
         <div class="panel panel-default">

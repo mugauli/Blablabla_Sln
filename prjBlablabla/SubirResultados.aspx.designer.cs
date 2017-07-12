@@ -10,7 +10,16 @@
 namespace prjBlablabla {
     
     
-    public partial class ImportarDatos {
+    public partial class SubirResultados {
+        
+        /// <summary>
+        /// ddListEscuelas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddListEscuelas;
         
         /// <summary>
         /// fileUploader1 control.
@@ -22,6 +31,15 @@ namespace prjBlablabla {
         protected global::System.Web.UI.WebControls.FileUpload fileUploader1;
         
         /// <summary>
+        /// cargarResultado control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button cargarResultado;
+        
+        /// <summary>
         /// lblError control.
         /// </summary>
         /// <remarks>
@@ -31,12 +49,12 @@ namespace prjBlablabla {
         protected global::System.Web.UI.WebControls.Label lblError;
         
         /// <summary>
-        /// cargarImagen control.
+        /// lblMes control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button cargarImagen;
+        protected global::System.Web.UI.WebControls.Label lblMes;
     }
 }

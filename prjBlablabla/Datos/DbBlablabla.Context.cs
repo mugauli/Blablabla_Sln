@@ -30,6 +30,10 @@ namespace prjBlablabla.Datos
         public DbSet<ctFrasesSilabitos> ctFrasesSilabitos { get; set; }
         public DbSet<Alumnos> Alumnos { get; set; }
         public DbSet<Escuelas> Escuelas { get; set; }
+        public DbSet<Escuela> Escuela { get; set; }
+        public DbSet<Grado> Grado { get; set; }
+        public DbSet<Grupo> Grupo { get; set; }
+        public DbSet<Resultados> Resultados { get; set; }
     
         public virtual int sp_InactivaFrases(Nullable<int> tipo)
         {
@@ -38,6 +42,43 @@ namespace prjBlablabla.Datos
                 new ObjectParameter("tipo", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InactivaFrases", tipoParameter);
+        }
+    
+        public virtual int sp_AddResultado(Nullable<int> idEscuela, Nullable<int> nLista, Nullable<int> grado, string grupo, Nullable<int> idJuego, Nullable<int> nivel, Nullable<int> consecutivo, Nullable<int> resultado)
+        {
+            var idEscuelaParameter = idEscuela.HasValue ?
+                new ObjectParameter("IdEscuela", idEscuela) :
+                new ObjectParameter("IdEscuela", typeof(int));
+    
+            var nListaParameter = nLista.HasValue ?
+                new ObjectParameter("NLista", nLista) :
+                new ObjectParameter("NLista", typeof(int));
+    
+            var gradoParameter = grado.HasValue ?
+                new ObjectParameter("Grado", grado) :
+                new ObjectParameter("Grado", typeof(int));
+    
+            var grupoParameter = grupo != null ?
+                new ObjectParameter("Grupo", grupo) :
+                new ObjectParameter("Grupo", typeof(string));
+    
+            var idJuegoParameter = idJuego.HasValue ?
+                new ObjectParameter("IdJuego", idJuego) :
+                new ObjectParameter("IdJuego", typeof(int));
+    
+            var nivelParameter = nivel.HasValue ?
+                new ObjectParameter("Nivel", nivel) :
+                new ObjectParameter("Nivel", typeof(int));
+    
+            var consecutivoParameter = consecutivo.HasValue ?
+                new ObjectParameter("Consecutivo", consecutivo) :
+                new ObjectParameter("Consecutivo", typeof(int));
+    
+            var resultadoParameter = resultado.HasValue ?
+                new ObjectParameter("Resultado", resultado) :
+                new ObjectParameter("Resultado", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_AddResultado", idEscuelaParameter, nListaParameter, gradoParameter, grupoParameter, idJuegoParameter, nivelParameter, consecutivoParameter, resultadoParameter);
         }
     }
 }

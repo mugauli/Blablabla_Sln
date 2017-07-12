@@ -194,6 +194,8 @@
       <DependentUpon>DbBlablabla.edmx</DependentUpon>
       <LastGenOutput>DbBlablabla.cs</LastGenOutput>
     </Content>
+    <Content Include="Escuelas.aspx" />
+    <Content Include="Grupos.aspx" />
     <Content Include="Images\american-express.png" />
     <Content Include="Images\bancos.png" />
     <Content Include="Images\blanco.png" />
@@ -249,7 +251,10 @@
     <Content Include="Reference\NPOI 2.2.1 binary package\Release\Read Me.txt" />
     <Content Include="Reference\NPOI 2.2.1 binary package\Release\Release Notes.txt" />
     <Content Include="Scripts\DatosJuego.js" />
+    <Content Include="Scripts\Escuelas.js" />
+    <Content Include="Scripts\Grupos.js" />
     <Content Include="Scripts\Preguntas.js" />
+    <Content Include="SubirResultados.aspx" />
     <Content Include="vendors\animate.css\.bower.json" />
     <Content Include="vendors\animate.css\animate-config.json" />
     <Content Include="vendors\animate.css\bower.json" />
@@ -4449,15 +4454,48 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DbBlablabla.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Datos\Escuela.cs">
+      <DependentUpon>DbBlablabla.tt</DependentUpon>
+    </Compile>
     <Compile Include="Datos\Escuelas.cs">
       <DependentUpon>DbBlablabla.tt</DependentUpon>
     </Compile>
+    <Compile Include="Datos\EscuelasData.cs" />
     <Compile Include="Datos\FrasesData.cs" />
+    <Compile Include="Datos\Grado.cs">
+      <DependentUpon>DbBlablabla.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\GradosData.cs" />
+    <Compile Include="Datos\Grupo.cs">
+      <DependentUpon>DbBlablabla.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\GruposData.cs" />
+    <Compile Include="Datos\Resultados.cs">
+      <DependentUpon>DbBlablabla.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\ResultadosData.cs" />
     <Compile Include="DTO\AlumnoDTO.cs" />
     <Compile Include="DTO\EscuelaDTO.cs" />
     <Compile Include="DTO\fraseDTO.cs" />
     <Compile Include="DTO\fraseSilabitosDTO.cs" />
+    <Compile Include="DTO\GradoDTO.cs" />
+    <Compile Include="DTO\GrupoDTO.cs" />
     <Compile Include="DTO\MethodResponseDTO.cs" />
+    <Compile Include="DTO\ResultadoDTO.cs" />
+    <Compile Include="Escuelas.aspx.cs">
+      <DependentUpon>Escuelas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Escuelas.aspx.designer.cs">
+      <DependentUpon>Escuelas.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Grupos.aspx.cs">
+      <DependentUpon>Grupos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Grupos.aspx.designer.cs">
+      <DependentUpon>Grupos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ImportarArchivo.aspx.cs">
       <DependentUpon>ImportarArchivo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4501,6 +4539,13 @@
       <DependentUpon>PorNino.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SubirResultados.aspx.cs">
+      <DependentUpon>SubirResultados.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SubirResultados.aspx.designer.cs">
+      <DependentUpon>SubirResultados.aspx</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\SubirArchivo.ascx.cs">
       <DependentUpon>SubirArchivo.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -4509,6 +4554,10 @@
       <DependentUpon>SubirArchivo.ascx</DependentUpon>
     </Compile>
     <Compile Include="WebAPI\DatosJuegoController.cs" />
+    <Compile Include="XML\Alumno.cs" />
+    <Compile Include="XML\Ensayos.cs" />
+    <Compile Include="XML\Estadistica.cs" />
+    <Compile Include="XML\Eventos.cs" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="vendors\moment\moment.d.ts" />

@@ -34,8 +34,8 @@ namespace prjBlablabla
 
         private void GuardarArchivo(HttpPostedFile file)
         {
-            if (file.FileName.EndsWith("xml"))
-            {
+                if (file.FileName.EndsWith("xml"))
+                {
                 try
                 {
                     // Se carga la ruta física de la carpeta temp del sitio
