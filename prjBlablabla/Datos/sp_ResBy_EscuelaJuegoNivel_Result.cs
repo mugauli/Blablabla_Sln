@@ -10,22 +10,10 @@
 namespace prjBlablabla.Datos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Resultados
+    public partial class sp_ResBy_EscuelaJuegoNivel_Result
     {
-        public int IdEscuela { get; set; }
-        public int NLista { get; set; }
-        public int Grado { get; set; }
-        public string Grupo { get; set; }
-        public int IdJuego { get; set; }
-        public int Nivel { get; set; }
-        public int Consecutivo { get; set; }
         public Nullable<int> Correcto { get; set; }
         public Nullable<int> Incorrecto { get; set; }
-        public Nullable<int> Edad { get; set; }
-        public string Sexo { get; set; }
-        public Nullable<int> Tiempo { get; set; }
-        public Nullable<System.DateTime> Fecha { get; set; }
     }
 }

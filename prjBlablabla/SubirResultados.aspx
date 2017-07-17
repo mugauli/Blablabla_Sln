@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="Body" runat="server">
 
     <link href="/Css/ImportarArchivo.css" rel="stylesheet" />
-    <script src="/Scripts/Preguntas.js"></script>
+
 
     <div class="panel panel-default">
         <div class="panel-heading">

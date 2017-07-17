@@ -44,7 +44,7 @@ namespace prjBlablabla.Datos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InactivaFrases", tipoParameter);
         }
     
-        public virtual int sp_AddResultado(Nullable<int> idEscuela, Nullable<int> nLista, Nullable<int> grado, string grupo, Nullable<int> idJuego, Nullable<int> nivel, Nullable<int> consecutivo, Nullable<int> resultado)
+        public virtual int sp_AddResultado(Nullable<int> idEscuela, Nullable<int> nLista, Nullable<int> grado, string grupo, Nullable<int> idJuego, Nullable<int> nivel, Nullable<int> consecutivo, Nullable<int> resultado, Nullable<int> edad, string sexo, Nullable<int> tiempo, Nullable<System.DateTime> fecha)
         {
             var idEscuelaParameter = idEscuela.HasValue ?
                 new ObjectParameter("IdEscuela", idEscuela) :
@@ -78,7 +78,90 @@ namespace prjBlablabla.Datos
                 new ObjectParameter("Resultado", resultado) :
                 new ObjectParameter("Resultado", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_AddResultado", idEscuelaParameter, nListaParameter, gradoParameter, grupoParameter, idJuegoParameter, nivelParameter, consecutivoParameter, resultadoParameter);
+            var edadParameter = edad.HasValue ?
+                new ObjectParameter("Edad", edad) :
+                new ObjectParameter("Edad", typeof(int));
+    
+            var sexoParameter = sexo != null ?
+                new ObjectParameter("Sexo", sexo) :
+                new ObjectParameter("Sexo", typeof(string));
+    
+            var tiempoParameter = tiempo.HasValue ?
+                new ObjectParameter("Tiempo", tiempo) :
+                new ObjectParameter("Tiempo", typeof(int));
+    
+            var fechaParameter = fecha.HasValue ?
+                new ObjectParameter("Fecha", fecha) :
+                new ObjectParameter("Fecha", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_AddResultado", idEscuelaParameter, nListaParameter, gradoParameter, grupoParameter, idJuegoParameter, nivelParameter, consecutivoParameter, resultadoParameter, edadParameter, sexoParameter, tiempoParameter, fechaParameter);
+        }
+    
+        public virtual ObjectResult<sp_ResBy_EscuelaJuegoNivel_Result> sp_ResBy_EscuelaJuegoNivel(Nullable<int> idEscuela, Nullable<int> idJuego, Nullable<int> nivel, string fechaini, string fechafin)
+        {
+            var idEscuelaParameter = idEscuela.HasValue ?
+                new ObjectParameter("IdEscuela", idEscuela) :
+                new ObjectParameter("IdEscuela", typeof(int));
+    
+            var idJuegoParameter = idJuego.HasValue ?
+                new ObjectParameter("IdJuego", idJuego) :
+                new ObjectParameter("IdJuego", typeof(int));
+    
+            var nivelParameter = nivel.HasValue ?
+                new ObjectParameter("Nivel", nivel) :
+                new ObjectParameter("Nivel", typeof(int));
+    
+            var fechainiParameter = fechaini != null ?
+                new ObjectParameter("fechaini", fechaini) :
+                new ObjectParameter("fechaini", typeof(string));
+    
+            var fechafinParameter = fechafin != null ?
+                new ObjectParameter("fechafin", fechafin) :
+                new ObjectParameter("fechafin", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ResBy_EscuelaJuegoNivel_Result>("sp_ResBy_EscuelaJuegoNivel", idEscuelaParameter, idJuegoParameter, nivelParameter, fechainiParameter, fechafinParameter);
+        }
+    
+        public virtual ObjectResult<sp_GetGruposByEscuela_Result> sp_GetGruposByEscuela(Nullable<int> idEscuela)
+        {
+            var idEscuelaParameter = idEscuela.HasValue ?
+                new ObjectParameter("IdEscuela", idEscuela) :
+                new ObjectParameter("IdEscuela", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetGruposByEscuela_Result>("sp_GetGruposByEscuela", idEscuelaParameter);
+        }
+    
+        public virtual ObjectResult<sp_ResNinoBy_EscuelaJuegoNivelGradoGrupo_Result> sp_ResNinoBy_EscuelaJuegoNivelGradoGrupo(Nullable<int> idEscuela, Nullable<int> idJuego, Nullable<int> nivel, Nullable<int> grado, string grupo, string fechaini, string fechafin)
+        {
+            var idEscuelaParameter = idEscuela.HasValue ?
+                new ObjectParameter("IdEscuela", idEscuela) :
+                new ObjectParameter("IdEscuela", typeof(int));
+    
+            var idJuegoParameter = idJuego.HasValue ?
+                new ObjectParameter("IdJuego", idJuego) :
+                new ObjectParameter("IdJuego", typeof(int));
+    
+            var nivelParameter = nivel.HasValue ?
+                new ObjectParameter("Nivel", nivel) :
+                new ObjectParameter("Nivel", typeof(int));
+    
+            var gradoParameter = grado.HasValue ?
+                new ObjectParameter("Grado", grado) :
+                new ObjectParameter("Grado", typeof(int));
+    
+            var grupoParameter = grupo != null ?
+                new ObjectParameter("Grupo", grupo) :
+                new ObjectParameter("Grupo", typeof(string));
+    
+            var fechainiParameter = fechaini != null ?
+                new ObjectParameter("fechaini", fechaini) :
+                new ObjectParameter("fechaini", typeof(string));
+    
+            var fechafinParameter = fechafin != null ?
+                new ObjectParameter("fechafin", fechafin) :
+                new ObjectParameter("fechafin", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ResNinoBy_EscuelaJuegoNivelGradoGrupo_Result>("sp_ResNinoBy_EscuelaJuegoNivelGradoGrupo", idEscuelaParameter, idJuegoParameter, nivelParameter, gradoParameter, grupoParameter, fechainiParameter, fechafinParameter);
         }
     }
 }

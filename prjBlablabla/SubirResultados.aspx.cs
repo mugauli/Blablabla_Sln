@@ -131,6 +131,10 @@ namespace prjBlablabla
                             Nivel = ensy.Nivel,
                             Consecutivo = ensy.Consecutivo,
                             Resultado = ensy.Correcto,
+                            Edad = evnt.Alumno.Edad,
+                            Fecha = Convert.ToDateTime(evnt.Fecha.Substring(0, 2) + "/" + evnt.Fecha.Substring(2, 2) + "/" + evnt.Fecha.Substring(4, 4)),
+                            Sexo = evnt.Alumno.Sexo,
+                            Tiempo = ensy.Tiempo,
                         };
                         
 

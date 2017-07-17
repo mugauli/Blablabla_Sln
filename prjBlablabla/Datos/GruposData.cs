@@ -39,21 +39,19 @@ namespace prjBlablabla.Datos
         {
             try
             {
+                
                 var response = new MethodResponseDTO<List<GrupoDTO>> { Code = 0 };
+                var grupos = new List<GrupoDTO>();
                 using (var context = new BlablablaSitioEntities())
                 {
-
-                    var DbEscuelasLst = context.Grupo.Where(x => x.EscuelaID == idEscuela)
-                        .Select(x => new GrupoDTO
-                        {
-                            ID = x.ID,
-                            Nombre = x.Nombre,
-                            EscuelaID = x.EscuelaID,
-                            GradoID = x.GradoID
-                        }).ToList();
-                    response.Result = DbEscuelasLst;
+                    var resultado = context.sp_GetGruposByEscuela(idEscuela).ToList();
+                    foreach(var r in resultado)
+                    {
+                        grupos.Add(new GrupoDTO() { Nombre = r.Grupo, GradoID = r.Grado });
+                    }
 
                 }
+                response.Result = grupos;
                 return response;
             }
             catch (Exception ex)

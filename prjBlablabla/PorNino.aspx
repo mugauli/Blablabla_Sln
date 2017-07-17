@@ -2,6 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Body" runat="server">
 
+    <script src="/Scripts/PorNinoCharts.js"></script>
+
     <!-- top tiles -->
     <div class="row tile_count">
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
@@ -36,28 +38,72 @@
         </div>
     </div>
     <!-- /top tiles -->
-
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
+             <h3>Gráfica de promedios <small>por semana y mes</small></h3>
             <div class="dashboard_graph">
-
-                <div class="row x_title">
-                    <div class="col-md-6">
-                        <h3>Gráfica de aciertos <small>por niño</small></h3>
-                    </div>
-                    <div class="col-md-6">
-                        <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                            <span>Diciembre 30, 2016 - Enero 28, 2017</span> <b class="caret"></b>
-                        </div>
+                <%--Filtros--%>
+                <div class="row">
+                                <form class="form-inline" role="form">
+                                     <!-- form group [Escuela] -->
+                                    <div class="form-group col-md-3">
+                                        <label class="filter-col" style="margin-right: 0;" for="pref-perpage">Escuela:</label>
+                                        <asp:DropDownList  ID="ddListEscuelas" runat="server" ClientIDMode="Static" class="form-control">
+                                        </asp:DropDownList>
+                                    </div>
+                                    <!-- form group [Grupo] -->
+                                    <div class="form-group col-md-2">
+                                        <label class="filter-col" style="margin-right: 0;" for="pref-perpage">Grupo:</label>
+                                        <select id="group" class="form-control">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option selected="selected" value="5">5</option>
+                                        </select>
+                                    </div>
+                                    <!-- form group [juego] -->
+                                    <div class="form-group col-md-2">
+                                        <label class="filter-col" style="margin-right: 0;" for="pref-search">Juego:</label>
+                                        <select id="game" class="form-control">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option selected="selected" value="5">5</option>
+                                        </select> 
+                                    </div>
+                                    <!-- form group [nivel] -->
+                                    <div class="form-group col-md-2">
+                                        <label class="filter-col" style="margin-right: 0;" for="pref-search">Nivel:</label>
+                                        <select id="level" class="form-control">
+                                            <option selected="selected" value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                        </select> 
+                                    </div>
+                                     <!-- form group [fecha] -->
+                                    <div class="form-group col-md-3">
+                                        <label class="filter-col" style="margin-right: 0;" for="pref-search">Fecha:</label>
+                                        <div id="reportrange">
+                                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                            <span>Diciembre 30, 2016 - Enero 28, 2017</span> <b class="caret"></b>
+                                        </div>
+                                    </div>
+                                </form>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <button type="button" id="filterAply"class="btn btn-info filter-col">Aplicar</button>
                     </div>
                 </div>
+                <%--End Filtros--%>
 
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div id="chart_plot_Nino" class="demo-placeholder"></div>
+                   
+                        <canvas id="canvas"></canvas>
+
                 </div>
-
-
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -65,10 +111,9 @@
     </div>
     <br />
     <div class="table-responsive">
-        <table class="table table-striped jambo_table bulk_action">
+        <table class="table table-striped jambo_table bulk_action" id="tblPorNinoResults">
             <thead>
                 <tr class="headings">
-
                     <th class="column-title">Grado </th>
                     <th class="column-title">Edad </th>
                     <th class="column-title">Sexo</th>
@@ -85,7 +130,7 @@
             </thead>
 
             <tbody>
-                <tr class="even pointer">
+                <tr class="even pointer result">
 
                     <td class=" ">3</td>
                     <td class=" ">8</td>
@@ -101,7 +146,7 @@
                     <td class=" ">1.3</td>
 
                 </tr>
-                <tr class="odd pointer">
+                <tr class="odd pointer result">
 
                     <td class=" ">3</td>
                     <td class=" ">8</td>
@@ -118,7 +163,7 @@
 
                 </tr>
 
-                <tr class="even pointer">
+                <tr class="even pointer result">
 
                     <td class=" ">3</td>
                     <td class=" ">8</td>
@@ -134,7 +179,7 @@
                     <td class=" ">1.3</td>
 
                 </tr>
-                <tr class="odd pointer">
+                <tr class="odd pointer result">
 
                     <td class=" ">3</td>
                     <td class=" ">8</td>
@@ -155,100 +200,6 @@
         </table>
     </div>
 
-    <script>
-        function gd1(year, month, day) {
-            return new Date(year, month - 1, day).getTime();
-        }
-
-
-        var arr_data_Nino1 = [
-            [1, 37],
-            [2, 44],
-            [3, 36],
-            [4, 9],
-            [5, 80],
-            [6, 5],
-            [7, 57],
-            [8, 87],
-            [9, 34],
-            [10, 46],
-            [11, 39],
-            [12, 70],
-            [13, 95],
-            [14, 97]
-        ];
-
-        var arr_data_Nino2 = [
-            [1, 17],
-            [2, 74],
-            [3, 6],
-            [4, 39],
-            [5, 20],
-            [6, 85],
-            [7, 7],
-            [8, 17],
-            [9, 74],
-            [10, 6],
-            [11, 39],
-            [12, 20],
-            [13, 85],
-            [14, 7]
-        ];
-
-        var chart_plot_Nino_Setting = {
-            series: {
-                lines: {
-                    show: false,
-                    fill: true
-                },
-                splines: {
-                    show: true,
-                    tension: 0.4,
-                    lineWidth: 1,
-                    fill: 0.4
-                },
-                points: {
-                    radius: 0,
-                    show: true
-                },
-                shadowSize: 2
-            },
-            grid: {
-                verticalLines: true,
-                hoverable: true,
-                clickable: true,
-                tickColor: "#d5d5d5",
-                borderWidth: 1,
-                color: '#fff'
-            },
-            colors: ["rgba(255, 0, 229, 0.38)", "rgba(4,156, 206, 0.38)"],
-            xaxis: {
-                tickColor: "rgba(51, 51, 51, 0.06)",
-                mode: "number",
-                tickSize: [1, "day"],
-                tickLength: 10,
-                axisLabel: "Date",
-                axisLabelUseCanvas: true,
-                axisLabelFontSizePixels: 12,
-                axisLabelFontFamily: 'Verdana, Arial',
-                axisLabelPadding: 10
-            },
-            yaxis: {
-                ticks: 8,
-                tickColor: "rgba(51, 51, 51, 0.06)",
-            },
-            tooltip: false
-        }
-
-
-        function initChart() {
-
-
-
-            $.plot($("#chart_plot_Nino"), [arr_data_Nino1, arr_data_Nino2], chart_plot_Nino_Setting);
-
-        }
-    </script>
 
 
 </asp:Content>

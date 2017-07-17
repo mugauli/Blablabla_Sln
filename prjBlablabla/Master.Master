@@ -109,15 +109,16 @@
                                     <li>
                                         <a><i class="fa fa-settings"></i>Carga de datos estadísticos <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="/ImportarDatos.aspx">Importar Datos</a></li>
+                                            <li><a href="/SubirResultados.aspx">Importar Datos</a></li>
                                         </ul>
                                     </li>
                                     <li>
                                         <a><i class="fa fa-settings"></i>Dar de alta escuela <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="/ImportarDatos.aspx">Importar Datos</a></li>
+                                            <li><a href="/Escuelas.aspx">Registrar</a></li>
                                         </ul>
                                     </li>
+ 
                                     <!--    <li>
                                         <a><i class="fa fa-table"></i> Tablas <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
@@ -225,8 +226,6 @@
     <script src="/vendors/moment/min/moment.min.js"></script>
     <script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-    <!-- Chart.js -->
-    <script src="/vendors/Chart.js/dist/Chart.min.js"></script>
 
     <!-- morris.js -->
     <script src="/vendors/raphael/raphael.min.js"></script>

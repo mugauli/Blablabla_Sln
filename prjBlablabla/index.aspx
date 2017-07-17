@@ -3,7 +3,8 @@
 
 <asp:Content ContentPlaceHolderID="Body" runat="server">
 
-
+     <link href="/Css/Index.css" rel="stylesheet" />
+     <script src="/Scripts/IndexCharts.js"></script>
     <!-- top tiles -->
     <div class="row tile_count">
         <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
@@ -41,22 +42,57 @@
 
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
+             <h3>Gráfica de promedios <small>por semana y mes</small></h3>
             <div class="dashboard_graph">
-
-                <div class="row x_title">
-                    <div class="col-md-6">
-                        <h3>Gráfica de promedios <small>por semana y mes</small></h3>
-                    </div>
-                    <div class="col-md-6">
-                        <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                            <span>Diciembre 30, 2016 - Enero 28, 2017</span> <b class="caret"></b>
-                        </div>
+                <%--Filtros--%>
+                <div class="row">
+                                <form class="form-inline" role="form">
+                                    <div class="form-group col-md-3">
+                                        <label class="filter-col" style="margin-right: 0;" for="pref-perpage">Escuela:</label>
+                                        <asp:DropDownList  ID="ddListEscuelas" runat="server" ClientIDMode="Static" class="form-control">
+                                        </asp:DropDownList>
+                                    </div>
+                                    <!-- form group [juego] -->
+                                    <div class="form-group col-md-3">
+                                        <label class="filter-col" style="margin-right: 0;" for="pref-search">Juego:</label>
+                                        <select id="game" class="form-control">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option selected="selected" value="5">5</option>
+                                        </select> 
+                                    </div>
+                                    <!-- form group [nivel] -->
+                                    <div class="form-group col-md-3">
+                                        <label class="filter-col" style="margin-right: 0;" for="pref-search">Nivel:</label>
+                                        <select id="level" class="form-control">
+                                            <option selected="selected" value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                        </select> 
+                                    </div>
+                                     <!-- form group [fecha] -->
+                                    <div class="form-group col-md-3">
+                                        <label class="filter-col" style="margin-right: 0;" for="pref-search">Fecha:</label>
+                                        <div id="reportrange">
+                                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                            <span>Diciembre 30, 2016 - Enero 28, 2017</span> <b class="caret"></b>
+                                        </div>
+                                    </div>
+                                </form>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <button type="button" id="filterAply"class="btn btn-info filter-col">Aplicar</button>
                     </div>
                 </div>
+                <%--End Filtros--%>
 
                 <div class="col-md-12 col-sm-12 col-xs-12">
-                    <div id="chart_plot_Dash" class="demo-placeholder"></div>
+                   
+                        <canvas id="canvas"></canvas>
+
                 </div>
 
 
@@ -68,7 +104,7 @@
 
     </div>
     <br />
-    <script>
+<%--    <script>
         function gdds(year, month, day) {
             return new Date(year, month - 1, day).getTime();
         }
@@ -147,6 +183,6 @@
             $.plot($("#chart_plot_Dash"), [arr_data_Dash1, arr_data_Dash2], chart_plot_Dash_Setting);
 
         }
-    </script>
+    </script>--%>
 
 </asp:Content>
