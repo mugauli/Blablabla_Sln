@@ -359,7 +359,7 @@
             <Parameter Name="fechaini" Mode="In" Type="String" />
             <Parameter Name="fechafin" Mode="In" Type="String" />
           </FunctionImport>
-          </EntityContainer>
+        </EntityContainer>
         <EntityType Name="Alumnos">
           <Key>
             <PropertyRef Name="Id_alumnos" />
@@ -806,7 +806,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          </EntityContainerMapping>
+        </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>
