@@ -120,13 +120,13 @@ namespace prjBlablabla.UserControls
             Excel.Worksheet workSheet = workBook.ActiveSheet;
             Excel.Range range = workSheet.UsedRange;
 
-            var fraces = new List<fraseDTO>();
+            var fraces = new List<FraseTorreDTO>();
             var cont = 1;
             try
             {
                 for (int i = 2; i <= range.Rows.Count; i++)
                 {
-                    var objFrase = new fraseDTO();
+                    var objFrase = new FraseTorreDTO();
 
 
                     objFrase.Id = int.Parse(((Excel.Range)range.Cells[i, 1]).Text);

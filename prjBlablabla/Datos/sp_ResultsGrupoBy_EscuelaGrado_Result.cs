@@ -10,19 +10,14 @@
 namespace prjBlablabla.Datos
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Grado
+    public partial class sp_ResultsGrupoBy_EscuelaGrado_Result
     {
-        public Grado()
-        {
-            this.Grupo = new HashSet<Grupo>();
-        }
-    
-        public int ID { get; set; }
-        public int Grado1 { get; set; }
-        public string Descripción { get; set; }
-    
-        public virtual ICollection<Grupo> Grupo { get; set; }
+        public string Sexo { get; set; }
+        public Nullable<int> TotalSexo { get; set; }
+        public Nullable<int> totalCorrectos { get; set; }
+        public Nullable<int> totalIncorrecto { get; set; }
+        public int IdJuego { get; set; }
+        public int Nivel { get; set; }
     }
 }

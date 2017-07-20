@@ -18,19 +18,19 @@ namespace prjBlablabla.Datos
                 {
                     foreach (var objResultado in Resultados)
                     {
-                        context.sp_AddResultado(objResultado.IdEscuela,
-                                                objResultado.NLista,
-                                                objResultado.Grado,
-                                                objResultado.Grupo,
-                                                objResultado.IdJuego,
-                                                objResultado.Nivel,
-                                                objResultado.Consecutivo,
-                                                objResultado.Resultado,
-                                                objResultado.Edad,
-                                                objResultado.Sexo,
-                                                objResultado.Tiempo,
-                                                objResultado.Fecha
-                                                );
+                        //context.sp_AddResultado(objResultado.IdEscuela,
+                        //                        objResultado.NLista,
+                        //                        objResultado.Grado,
+                        //                        objResultado.Grupo,
+                        //                        objResultado.IdJuego,
+                        //                        objResultado.Nivel,
+                        //                        objResultado.Consecutivo,
+                        //                        objResultado.Resultado,
+                        //                        objResultado.Edad,
+                        //                        objResultado.Sexo,
+                        //                        objResultado.Tiempo,
+                        //                        objResultado.Fecha
+                        //                        );
 
                     }
                 }

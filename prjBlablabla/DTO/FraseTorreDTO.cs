@@ -5,7 +5,7 @@ using System.Web;
 
 namespace prjBlablabla.DTO
 {
-    public class fraseDTO
+    public class FraseTorreDTO
     {
         public int Id { get; set; }
         public string enun1 { get; set; }
@@ -15,6 +15,6 @@ namespace prjBlablabla.DTO
         public string opcion2 { get; set; }
         public string opcion3 { get; set; }
         public int nivel { get; set; }
-        public int juego { get; set; }
+        public bool estado { get; set; }
     }
 }

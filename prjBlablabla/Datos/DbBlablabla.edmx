@@ -30,7 +30,39 @@
           <Property Name="opcion3" Type="varchar" MaxLength="50" />
           <Property Name="estado" Type="bit" />
           <Property Name="nivel" Type="int" />
-          <Property Name="juego" Type="int" />
+        </EntityType>
+        <EntityType Name="ctFrasesBosque">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Frase" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Opcion1" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Opcion2" Type="nvarchar" MaxLength="100" />
+          <Property Name="Correcta" Type="bit" />
+          <Property Name="Nivel" Type="tinyint" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ctFrasesCastillo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Enunciado1" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Enunciado2" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Correcta" Type="bit" Nullable="false" />
+          <Property Name="Nivel" Type="tinyint" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ctFrasesLago">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Enunciado" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Eleccion" Type="bit" Nullable="false" />
+          <Property Name="Nivel" Type="tinyint" Nullable="false" />
+          <Property Name="Estado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ctFrasesSilabitos">
           <Key>
@@ -104,6 +136,7 @@
           <Property Name="Sexo" Type="char" MaxLength="1" />
           <Property Name="Tiempo" Type="int" />
           <Property Name="Fecha" Type="datetime" />
+          <Property Name="Puntos" Type="int" />
         </EntityType>
         <Association Name="FK_Alumnos_Escuelas">
           <End Role="Escuelas" Type="Self.Escuelas" Multiplicity="0..1" />
@@ -154,17 +187,24 @@
           <Parameter Name="Sexo" Type="char" Mode="In" />
           <Parameter Name="Tiempo" Type="int" Mode="In" />
           <Parameter Name="Fecha" Type="datetime" Mode="In" />
+          <Parameter Name="Puntos" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_GetGruposByEscuela" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdEscuela" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_InactivaFrases" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="tipo" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_ResBy_EscuelaJuegoNivel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="IdEscuela" Type="int" Mode="In" />
           <Parameter Name="IdJuego" Type="int" Mode="In" />
           <Parameter Name="Nivel" Type="int" Mode="In" />
+          <Parameter Name="fechaini" Type="varchar" Mode="In" />
+          <Parameter Name="fechafin" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ResGradoGrupoBy_EscuelaJuegoNivel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEscuela" Type="int" Mode="In" />
+          <Parameter Name="IdJuego" Type="int" Mode="In" />
+          <Parameter Name="Nivel" Type="int" Mode="In" />
+          <Parameter Name="Grado" Type="int" Mode="In" />
+          <Parameter Name="Grupo" Type="varchar" Mode="In" />
           <Parameter Name="fechaini" Type="varchar" Mode="In" />
           <Parameter Name="fechafin" Type="varchar" Mode="In" />
         </Function>
@@ -177,9 +217,35 @@
           <Parameter Name="fechaini" Type="varchar" Mode="In" />
           <Parameter Name="fechafin" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="sp_ResultsEscuelaBy_GradoGrupo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEscuela" Type="int" Mode="In" />
+          <Parameter Name="Grado" Type="int" Mode="In" />
+          <Parameter Name="Grupo" Type="varchar" Mode="In" />
+          <Parameter Name="fechaini" Type="varchar" Mode="In" />
+          <Parameter Name="fechafin" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ResultsGrupoBy_EscuelaGrado" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEscuela" Type="int" Mode="In" />
+          <Parameter Name="Grado" Type="int" Mode="In" />
+          <Parameter Name="Grupo" Type="varchar" Mode="In" />
+          <Parameter Name="fechaini" Type="varchar" Mode="In" />
+          <Parameter Name="fechafin" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="sp_ResultsNinoBy_EscuelaJuegoNivelGradoGrupo" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdEscuela" Type="int" Mode="In" />
+          <Parameter Name="IdJuego" Type="int" Mode="In" />
+          <Parameter Name="Nivel" Type="int" Mode="In" />
+          <Parameter Name="Grado" Type="int" Mode="In" />
+          <Parameter Name="Grupo" Type="varchar" Mode="In" />
+          <Parameter Name="fechaini" Type="varchar" Mode="In" />
+          <Parameter Name="fechafin" Type="varchar" Mode="In" />
+        </Function>
         <EntityContainer Name="DB_9F97CF_BlablablaSitioModelStoreContainer">
           <EntitySet Name="Alumnos" EntityType="Self.Alumnos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ctFrases" EntityType="Self.ctFrases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ctFrasesBosque" EntityType="Self.ctFrasesBosque" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ctFrasesCastillo" EntityType="Self.ctFrasesCastillo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ctFrasesLago" EntityType="Self.ctFrasesLago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ctFrasesSilabitos" EntityType="Self.ctFrasesSilabitos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Escuela" EntityType="Self.Escuela" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Escuelas" EntityType="Self.Escuelas" Schema="dbo" store:Type="Tables" />
@@ -204,20 +270,21 @@
     <edmx:ConceptualModels>
       <Schema Namespace="DB_9F97CF_BlablablaSitioModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="BlablablaSitioEntities" annotation:LazyLoadingEnabled="true" >
-          <EntitySet Name="ctFrases" EntityType="DB_9F97CF_BlablablaSitioModel.ctFrases" />
-          <EntitySet Name="ctFrasesSilabitos" EntityType="DB_9F97CF_BlablablaSitioModel.ctFrasesSilabitos" />
-          <FunctionImport Name="sp_InactivaFrases">
-          <Parameter Name="tipo" Mode="In" Type="Int32" />
-          </FunctionImport>
           <EntitySet Name="Alumnos" EntityType="DB_9F97CF_BlablablaSitioModel.Alumnos" />
+          <EntitySet Name="ctFrases" EntityType="DB_9F97CF_BlablablaSitioModel.ctFrases" />
+          <EntitySet Name="ctFrasesBosque" EntityType="DB_9F97CF_BlablablaSitioModel.ctFrasesBosque" />
+          <EntitySet Name="ctFrasesCastillo" EntityType="DB_9F97CF_BlablablaSitioModel.ctFrasesCastillo" />
+          <EntitySet Name="ctFrasesLago" EntityType="DB_9F97CF_BlablablaSitioModel.ctFrasesLago" />
+          <EntitySet Name="ctFrasesSilabitos" EntityType="DB_9F97CF_BlablablaSitioModel.ctFrasesSilabitos" />
+          <EntitySet Name="Escuela" EntityType="DB_9F97CF_BlablablaSitioModel.Escuela" />
           <EntitySet Name="Escuelas" EntityType="DB_9F97CF_BlablablaSitioModel.Escuelas" />
+          <EntitySet Name="Grado" EntityType="DB_9F97CF_BlablablaSitioModel.Grado" />
+          <EntitySet Name="Grupo" EntityType="DB_9F97CF_BlablablaSitioModel.Grupo" />
+          <EntitySet Name="Resultados" EntityType="DB_9F97CF_BlablablaSitioModel.Resultados" />
           <AssociationSet Name="FK_Alumnos_Escuelas" Association="DB_9F97CF_BlablablaSitioModel.FK_Alumnos_Escuelas">
             <End Role="Escuelas" EntitySet="Escuelas" />
             <End Role="Alumnos" EntitySet="Alumnos" />
           </AssociationSet>
-          <EntitySet Name="Escuela" EntityType="DB_9F97CF_BlablablaSitioModel.Escuela" />
-          <EntitySet Name="Grado" EntityType="DB_9F97CF_BlablablaSitioModel.Grado" />
-          <EntitySet Name="Grupo" EntityType="DB_9F97CF_BlablablaSitioModel.Grupo" />
           <AssociationSet Name="FK_EscuelaGrupo" Association="DB_9F97CF_BlablablaSitioModel.FK_EscuelaGrupo">
             <End Role="Escuela" EntitySet="Escuela" />
             <End Role="Grupo" EntitySet="Grupo" />
@@ -239,8 +306,11 @@
             <Parameter Name="Sexo" Mode="In" Type="String" />
             <Parameter Name="Tiempo" Mode="In" Type="Int32" />
             <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="Puntos" Mode="In" Type="Int32" />
           </FunctionImport>
-          <EntitySet Name="Resultados" EntityType="DB_9F97CF_BlablablaSitioModel.Resultados" />
+          <FunctionImport Name="sp_GetGruposByEscuela" ReturnType="Collection(DB_9F97CF_BlablablaSitioModel.sp_GetGruposByEscuela_Result)">
+            <Parameter Name="IdEscuela" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="sp_ResBy_EscuelaJuegoNivel" ReturnType="Collection(DB_9F97CF_BlablablaSitioModel.sp_ResBy_EscuelaJuegoNivel_Result)">
             <Parameter Name="IdEscuela" Mode="In" Type="Int32" />
             <Parameter Name="IdJuego" Mode="In" Type="Int32" />
@@ -248,8 +318,14 @@
             <Parameter Name="fechaini" Mode="In" Type="String" />
             <Parameter Name="fechafin" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_GetGruposByEscuela" ReturnType="Collection(DB_9F97CF_BlablablaSitioModel.sp_GetGruposByEscuela_Result)">
-          <Parameter Name="IdEscuela" Mode="In" Type="Int32" />
+          <FunctionImport Name="sp_ResGradoGrupoBy_EscuelaJuegoNivel" ReturnType="Collection(DB_9F97CF_BlablablaSitioModel.sp_ResGradoGrupoBy_EscuelaJuegoNivel_Result)">
+            <Parameter Name="IdEscuela" Mode="In" Type="Int32" />
+            <Parameter Name="IdJuego" Mode="In" Type="Int32" />
+            <Parameter Name="Nivel" Mode="In" Type="Int32" />
+            <Parameter Name="Grado" Mode="In" Type="Int32" />
+            <Parameter Name="Grupo" Mode="In" Type="String" />
+            <Parameter Name="fechaini" Mode="In" Type="String" />
+            <Parameter Name="fechafin" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_ResNinoBy_EscuelaJuegoNivelGradoGrupo" ReturnType="Collection(DB_9F97CF_BlablablaSitioModel.sp_ResNinoBy_EscuelaJuegoNivelGradoGrupo_Result)">
             <Parameter Name="IdEscuela" Mode="In" Type="Int32" />
@@ -260,7 +336,43 @@
             <Parameter Name="fechaini" Mode="In" Type="String" />
             <Parameter Name="fechafin" Mode="In" Type="String" />
           </FunctionImport>
-        </EntityContainer>
+          <FunctionImport Name="sp_ResultsEscuelaBy_GradoGrupo" ReturnType="Collection(DB_9F97CF_BlablablaSitioModel.sp_ResultsEscuelaBy_GradoGrupo_Result)">
+            <Parameter Name="IdEscuela" Mode="In" Type="Int32" />
+            <Parameter Name="Grado" Mode="In" Type="Int32" />
+            <Parameter Name="Grupo" Mode="In" Type="String" />
+            <Parameter Name="fechaini" Mode="In" Type="String" />
+            <Parameter Name="fechafin" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ResultsGrupoBy_EscuelaGrado" ReturnType="Collection(DB_9F97CF_BlablablaSitioModel.sp_ResultsGrupoBy_EscuelaGrado_Result)">
+            <Parameter Name="IdEscuela" Mode="In" Type="Int32" />
+            <Parameter Name="Grado" Mode="In" Type="Int32" />
+            <Parameter Name="Grupo" Mode="In" Type="String" />
+            <Parameter Name="fechaini" Mode="In" Type="String" />
+            <Parameter Name="fechafin" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ResultsNinoBy_EscuelaJuegoNivelGradoGrupo" ReturnType="Collection(DB_9F97CF_BlablablaSitioModel.sp_ResultsNinoBy_EscuelaJuegoNivelGradoGrupo_Result)">
+            <Parameter Name="IdEscuela" Mode="In" Type="Int32" />
+            <Parameter Name="IdJuego" Mode="In" Type="Int32" />
+            <Parameter Name="Nivel" Mode="In" Type="Int32" />
+            <Parameter Name="Grado" Mode="In" Type="Int32" />
+            <Parameter Name="Grupo" Mode="In" Type="String" />
+            <Parameter Name="fechaini" Mode="In" Type="String" />
+            <Parameter Name="fechafin" Mode="In" Type="String" />
+          </FunctionImport>
+          </EntityContainer>
+        <EntityType Name="Alumnos">
+          <Key>
+            <PropertyRef Name="Id_alumnos" />
+          </Key>
+          <Property Name="Id_alumnos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Id_escuela_alumnos" Type="Int32" />
+          <Property Name="nombre_alumnos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoP_alumnos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellidoM_alumnos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="fecha_nac_alumnos" Type="DateTime" Precision="0" />
+          <Property Name="no_lista_alumnos" Type="Int32" />
+          <NavigationProperty Name="Escuelas" Relationship="DB_9F97CF_BlablablaSitioModel.FK_Alumnos_Escuelas" FromRole="Alumnos" ToRole="Escuelas" />
+        </EntityType>
         <EntityType Name="ctFrases">
           <Key>
             <PropertyRef Name="Id" />
@@ -274,7 +386,39 @@
           <Property Name="opcion3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="estado" Type="Boolean" />
           <Property Name="nivel" Type="Int32" />
-          <Property Name="juego" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ctFrasesBosque">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Frase" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Opcion1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Opcion2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Correcta" Type="Boolean" />
+          <Property Name="Nivel" Type="Byte" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ctFrasesCastillo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Enunciado1" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Enunciado2" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Correcta" Type="Boolean" Nullable="false" />
+          <Property Name="Nivel" Type="Byte" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ctFrasesLago">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Enunciado" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Eleccion" Type="Boolean" Nullable="false" />
+          <Property Name="Nivel" Type="Byte" Nullable="false" />
+          <Property Name="Estado" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="ctFrasesSilabitos">
           <Key>
@@ -291,18 +435,14 @@
           <Property Name="estado" Type="Boolean" />
           <Property Name="nivel" Type="Int32" />
         </EntityType>
-        <EntityType Name="Alumnos">
+        <EntityType Name="Escuela">
           <Key>
-            <PropertyRef Name="Id_alumnos" />
+            <PropertyRef Name="ID" />
           </Key>
-          <Property Name="Id_alumnos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Id_escuela_alumnos" Type="Int32" />
-          <Property Name="nombre_alumnos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="apellidoP_alumnos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="apellidoM_alumnos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="fecha_nac_alumnos" Type="DateTime" Precision="0" />
-          <Property Name="no_lista_alumnos" Type="Int32" />
-          <NavigationProperty Name="Escuelas" Relationship="DB_9F97CF_BlablablaSitioModel.FK_Alumnos_Escuelas" FromRole="Alumnos" ToRole="Escuelas" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Dirección" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Grupo" Relationship="DB_9F97CF_BlablablaSitioModel.FK_EscuelaGrupo" FromRole="Escuela" ToRole="Grupo" />
         </EntityType>
         <EntityType Name="Escuelas">
           <Key>
@@ -313,27 +453,6 @@
           <Property Name="grado_escuelas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="grupo_escuelas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Alumnos" Relationship="DB_9F97CF_BlablablaSitioModel.FK_Alumnos_Escuelas" FromRole="Escuelas" ToRole="Alumnos" />
-        </EntityType>
-        <Association Name="FK_Alumnos_Escuelas">
-          <End Type="DB_9F97CF_BlablablaSitioModel.Escuelas" Role="Escuelas" Multiplicity="0..1" />
-          <End Type="DB_9F97CF_BlablablaSitioModel.Alumnos" Role="Alumnos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Escuelas">
-              <PropertyRef Name="Id_escuelas" />
-            </Principal>
-            <Dependent Role="Alumnos">
-              <PropertyRef Name="Id_escuela_alumnos" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="Escuela">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Dirección" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Grupo" Relationship="DB_9F97CF_BlablablaSitioModel.FK_EscuelaGrupo" FromRole="Escuela" ToRole="Grupo" />
         </EntityType>
         <EntityType Name="Grado">
           <Key>
@@ -355,6 +474,43 @@
           <NavigationProperty Name="Escuela" Relationship="DB_9F97CF_BlablablaSitioModel.FK_EscuelaGrupo" FromRole="Grupo" ToRole="Escuela" />
           <NavigationProperty Name="Grado" Relationship="DB_9F97CF_BlablablaSitioModel.FK_GradoGrupo" FromRole="Grupo" ToRole="Grado" />
         </EntityType>
+        <EntityType Name="Resultados">
+          <Key>
+            <PropertyRef Name="IdEscuela" />
+            <PropertyRef Name="NLista" />
+            <PropertyRef Name="Grado" />
+            <PropertyRef Name="Grupo" />
+            <PropertyRef Name="IdJuego" />
+            <PropertyRef Name="Nivel" />
+            <PropertyRef Name="Consecutivo" />
+          </Key>
+          <Property Name="IdEscuela" Type="Int32" Nullable="false" />
+          <Property Name="NLista" Type="Int32" Nullable="false" />
+          <Property Name="Grado" Type="Int32" Nullable="false" />
+          <Property Name="Grupo" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="IdJuego" Type="Int32" Nullable="false" />
+          <Property Name="Nivel" Type="Int32" Nullable="false" />
+          <Property Name="Consecutivo" Type="Int32" Nullable="false" />
+          <Property Name="Correcto" Type="Int32" />
+          <Property Name="Incorrecto" Type="Int32" />
+          <Property Name="Edad" Type="Int32" />
+          <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Tiempo" Type="Int32" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <Property Name="Puntos" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_Alumnos_Escuelas">
+          <End Type="DB_9F97CF_BlablablaSitioModel.Escuelas" Role="Escuelas" Multiplicity="0..1" />
+          <End Type="DB_9F97CF_BlablablaSitioModel.Alumnos" Role="Alumnos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Escuelas">
+              <PropertyRef Name="Id_escuelas" />
+            </Principal>
+            <Dependent Role="Alumnos">
+              <PropertyRef Name="Id_escuela_alumnos" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_EscuelaGrupo">
           <End Type="DB_9F97CF_BlablablaSitioModel.Escuela" Role="Escuela" Multiplicity="1" />
           <End Type="DB_9F97CF_BlablablaSitioModel.Grupo" Role="Grupo" Multiplicity="*" />
@@ -379,37 +535,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Resultados">
-          <Key>
-            <PropertyRef Name="IdEscuela" />
-            <PropertyRef Name="NLista" />
-            <PropertyRef Name="Grado" />
-            <PropertyRef Name="Grupo" />
-            <PropertyRef Name="IdJuego" />
-            <PropertyRef Name="Nivel" />
-            <PropertyRef Name="Consecutivo" />
-          </Key>
-          <Property Name="IdEscuela" Type="Int32" Nullable="false" />
-          <Property Name="NLista" Type="Int32" Nullable="false" />
-          <Property Name="Grado" Type="Int32" Nullable="false" />
-          <Property Name="Grupo" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="IdJuego" Type="Int32" Nullable="false" />
-          <Property Name="Nivel" Type="Int32" Nullable="false" />
-          <Property Name="Consecutivo" Type="Int32" Nullable="false" />
-          <Property Name="Correcto" Type="Int32" />
-          <Property Name="Incorrecto" Type="Int32" />
-          <Property Name="Edad" Type="Int32" />
-          <Property Name="Sexo" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
-          <Property Name="Tiempo" Type="Int32" />
-          <Property Name="Fecha" Type="DateTime" Precision="3" />
-        </EntityType>
+        <ComplexType Name="sp_GetGruposByEscuela_Result">
+          <Property Type="Int32" Name="Grado" Nullable="false" />
+          <Property Type="String" Name="Grupo" Nullable="false" MaxLength="255" />
+        </ComplexType>
         <ComplexType Name="sp_ResBy_EscuelaJuegoNivel_Result">
           <Property Type="Int32" Name="Correcto" Nullable="true" />
           <Property Type="Int32" Name="Incorrecto" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="sp_GetGruposByEscuela_Result">
-          <Property Type="Int32" Name="Grado" Nullable="false" />
-          <Property Type="String" Name="Grupo" Nullable="false" MaxLength="255" />
+        <ComplexType Name="sp_ResGradoGrupoBy_EscuelaJuegoNivel_Result">
+          <Property Type="Int32" Name="Correcto" Nullable="true" />
+          <Property Type="Int32" Name="Incorrecto" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_ResNinoBy_EscuelaJuegoNivelGradoGrupo_Result">
           <Property Type="Int32" Name="Edad" Nullable="true" />
@@ -420,17 +556,56 @@
           <Property Type="Int32" Name="porcentaje_aciertos" Nullable="true" />
           <Property Type="Int32" Name="porcentaje_errores" Nullable="true" />
           <Property Type="Int32" Name="Tiempo" Nullable="true" />
+          <Property Type="Int32" Name="Puntos" Nullable="true" />
         </ComplexType>
-      </Schema>
+        <ComplexType Name="sp_ResultsEscuelaBy_GradoGrupo_Result">
+          <Property Type="String" Name="Sexo" Nullable="true" MaxLength="1" />
+          <Property Type="Int32" Name="totalCorrectos" Nullable="true" />
+          <Property Type="Int32" Name="totalIncorrecto" Nullable="true" />
+          <Property Type="Int32" Name="IdJuego" Nullable="false" />
+          <Property Type="Int32" Name="Nivel" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_ResultsGrupoBy_EscuelaGrado_Result">
+          <Property Type="String" Name="Sexo" Nullable="true" MaxLength="1" />
+          <Property Type="Int32" Name="TotalSexo" Nullable="true" />
+          <Property Type="Int32" Name="totalCorrectos" Nullable="true" />
+          <Property Type="Int32" Name="totalIncorrecto" Nullable="true" />
+          <Property Type="Int32" Name="IdJuego" Nullable="false" />
+          <Property Type="Int32" Name="Nivel" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_ResultsNinoBy_EscuelaJuegoNivelGradoGrupo_Result">
+          <Property Type="Int32" Name="Edad" Nullable="true" />
+          <Property Type="String" Name="Sexo" Nullable="true" MaxLength="1" />
+          <Property Type="Int32" Name="Correcto" Nullable="true" />
+          <Property Type="Int32" Name="Incorrecto" Nullable="true" />
+          <Property Type="Int32" Name="Total_de_Ensayos" Nullable="true" />
+          <Property Type="Int32" Name="porcentaje_aciertos" Nullable="true" />
+          <Property Type="Int32" Name="porcentaje_errores" Nullable="true" />
+          <Property Type="Int32" Name="Tiempo" Nullable="true" />
+          <Property Type="Int32" Name="Puntos" Nullable="true" />
+        </ComplexType>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DB_9F97CF_BlablablaSitioModelStoreContainer" CdmEntityContainer="BlablablaSitioEntities" >
+          <EntitySetMapping Name="Alumnos">
+            <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.Alumnos">
+              <MappingFragment StoreEntitySet="Alumnos">
+                <ScalarProperty Name="no_lista_alumnos" ColumnName="no_lista_alumnos" />
+                <ScalarProperty Name="fecha_nac_alumnos" ColumnName="fecha_nac_alumnos" />
+                <ScalarProperty Name="apellidoM_alumnos" ColumnName="apellidoM_alumnos" />
+                <ScalarProperty Name="apellidoP_alumnos" ColumnName="apellidoP_alumnos" />
+                <ScalarProperty Name="nombre_alumnos" ColumnName="nombre_alumnos" />
+                <ScalarProperty Name="Id_escuela_alumnos" ColumnName="Id_escuela_alumnos" />
+                <ScalarProperty Name="Id_alumnos" ColumnName="Id_alumnos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ctFrases">
             <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.ctFrases">
               <MappingFragment StoreEntitySet="ctFrases">
-                <ScalarProperty Name="juego" ColumnName="juego" />
                 <ScalarProperty Name="nivel" ColumnName="nivel" />
                 <ScalarProperty Name="estado" ColumnName="estado" />
                 <ScalarProperty Name="opcion3" ColumnName="opcion3" />
@@ -439,6 +614,42 @@
                 <ScalarProperty Name="correcta" ColumnName="correcta" />
                 <ScalarProperty Name="enun2" ColumnName="enun2" />
                 <ScalarProperty Name="enun1" ColumnName="enun1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ctFrasesBosque">
+            <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.ctFrasesBosque">
+              <MappingFragment StoreEntitySet="ctFrasesBosque">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="Correcta" ColumnName="Correcta" />
+                <ScalarProperty Name="Opcion2" ColumnName="Opcion2" />
+                <ScalarProperty Name="Opcion1" ColumnName="Opcion1" />
+                <ScalarProperty Name="Frase" ColumnName="Frase" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ctFrasesCastillo">
+            <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.ctFrasesCastillo">
+              <MappingFragment StoreEntitySet="ctFrasesCastillo">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="Correcta" ColumnName="Correcta" />
+                <ScalarProperty Name="Enunciado2" ColumnName="Enunciado2" />
+                <ScalarProperty Name="Enunciado1" ColumnName="Enunciado1" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ctFrasesLago">
+            <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.ctFrasesLago">
+              <MappingFragment StoreEntitySet="ctFrasesLago">
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+                <ScalarProperty Name="Eleccion" ColumnName="Eleccion" />
+                <ScalarProperty Name="Enunciado" ColumnName="Enunciado" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -459,17 +670,12 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_InactivaFrases" FunctionName="DB_9F97CF_BlablablaSitioModel.Store.sp_InactivaFrases" />
-          <EntitySetMapping Name="Alumnos">
-            <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.Alumnos">
-              <MappingFragment StoreEntitySet="Alumnos">
-                <ScalarProperty Name="no_lista_alumnos" ColumnName="no_lista_alumnos" />
-                <ScalarProperty Name="fecha_nac_alumnos" ColumnName="fecha_nac_alumnos" />
-                <ScalarProperty Name="apellidoM_alumnos" ColumnName="apellidoM_alumnos" />
-                <ScalarProperty Name="apellidoP_alumnos" ColumnName="apellidoP_alumnos" />
-                <ScalarProperty Name="nombre_alumnos" ColumnName="nombre_alumnos" />
-                <ScalarProperty Name="Id_escuela_alumnos" ColumnName="Id_escuela_alumnos" />
-                <ScalarProperty Name="Id_alumnos" ColumnName="Id_alumnos" />
+          <EntitySetMapping Name="Escuela">
+            <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.Escuela">
+              <MappingFragment StoreEntitySet="Escuela">
+                <ScalarProperty Name="Dirección" ColumnName="Dirección" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -480,15 +686,6 @@
                 <ScalarProperty Name="grado_escuelas" ColumnName="grado_escuelas" />
                 <ScalarProperty Name="nombre_escuelas" ColumnName="nombre_escuelas" />
                 <ScalarProperty Name="Id_escuelas" ColumnName="Id_escuelas" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Escuela">
-            <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.Escuela">
-              <MappingFragment StoreEntitySet="Escuela">
-                <ScalarProperty Name="Dirección" ColumnName="Dirección" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -511,10 +708,10 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_AddResultado" FunctionName="DB_9F97CF_BlablablaSitioModel.Store.sp_AddResultado" />
           <EntitySetMapping Name="Resultados">
             <EntityTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.Resultados">
               <MappingFragment StoreEntitySet="Resultados">
+                <ScalarProperty Name="Puntos" ColumnName="Puntos" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
                 <ScalarProperty Name="Tiempo" ColumnName="Tiempo" />
                 <ScalarProperty Name="Sexo" ColumnName="Sexo" />
@@ -531,6 +728,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_AddResultado" FunctionName="DB_9F97CF_BlablablaSitioModel.Store.sp_AddResultado" />
+          <FunctionImportMapping FunctionImportName="sp_GetGruposByEscuela" FunctionName="DB_9F97CF_BlablablaSitioModel.Store.sp_GetGruposByEscuela">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.sp_GetGruposByEscuela_Result">
+                <ScalarProperty Name="Grado" ColumnName="Grado" />
+                <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_ResBy_EscuelaJuegoNivel" FunctionName="DB_9F97CF_BlablablaSitioModel.Store.sp_ResBy_EscuelaJuegoNivel">
             <ResultMapping>
               <ComplexTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.sp_ResBy_EscuelaJuegoNivel_Result">
@@ -539,11 +745,11 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_GetGruposByEscuela" FunctionName="DB_9F97CF_BlablablaSitioModel.Store.sp_GetGruposByEscuela">
+          <FunctionImportMapping FunctionImportName="sp_ResGradoGrupoBy_EscuelaJuegoNivel" FunctionName="DB_9F97CF_BlablablaSitioModel.Store.sp_ResGradoGrupoBy_EscuelaJuegoNivel">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.sp_GetGruposByEscuela_Result">
-                <ScalarProperty Name="Grado" ColumnName="Grado" />
-                <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+              <ComplexTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.sp_ResGradoGrupoBy_EscuelaJuegoNivel_Result">
+                <ScalarProperty Name="Correcto" ColumnName="Correcto" />
+                <ScalarProperty Name="Incorrecto" ColumnName="Incorrecto" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -558,10 +764,49 @@
                 <ScalarProperty Name="porcentaje_aciertos" ColumnName="porcentaje_aciertos" />
                 <ScalarProperty Name="porcentaje_errores" ColumnName="porcentaje_errores" />
                 <ScalarProperty Name="Tiempo" ColumnName="Tiempo" />
+                <ScalarProperty Name="Puntos" ColumnName="Puntos" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-        </EntityContainerMapping>
+          <FunctionImportMapping FunctionImportName="sp_ResultsEscuelaBy_GradoGrupo" FunctionName="DB_9F97CF_BlablablaSitioModel.Store.sp_ResultsEscuelaBy_GradoGrupo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.sp_ResultsEscuelaBy_GradoGrupo_Result">
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="totalCorrectos" ColumnName="totalCorrectos" />
+                <ScalarProperty Name="totalIncorrecto" ColumnName="totalIncorrecto" />
+                <ScalarProperty Name="IdJuego" ColumnName="IdJuego" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ResultsGrupoBy_EscuelaGrado" FunctionName="DB_9F97CF_BlablablaSitioModel.Store.sp_ResultsGrupoBy_EscuelaGrado">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.sp_ResultsGrupoBy_EscuelaGrado_Result">
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="TotalSexo" ColumnName="TotalSexo" />
+                <ScalarProperty Name="totalCorrectos" ColumnName="totalCorrectos" />
+                <ScalarProperty Name="totalIncorrecto" ColumnName="totalIncorrecto" />
+                <ScalarProperty Name="IdJuego" ColumnName="IdJuego" />
+                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ResultsNinoBy_EscuelaJuegoNivelGradoGrupo" FunctionName="DB_9F97CF_BlablablaSitioModel.Store.sp_ResultsNinoBy_EscuelaJuegoNivelGradoGrupo">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DB_9F97CF_BlablablaSitioModel.sp_ResultsNinoBy_EscuelaJuegoNivelGradoGrupo_Result">
+                <ScalarProperty Name="Edad" ColumnName="Edad" />
+                <ScalarProperty Name="Sexo" ColumnName="Sexo" />
+                <ScalarProperty Name="Correcto" ColumnName="Correcto" />
+                <ScalarProperty Name="Incorrecto" ColumnName="Incorrecto" />
+                <ScalarProperty Name="Total_de_Ensayos" ColumnName="Total de Ensayos" />
+                <ScalarProperty Name="porcentaje_aciertos" ColumnName="porcentaje_aciertos" />
+                <ScalarProperty Name="porcentaje_errores" ColumnName="porcentaje_errores" />
+                <ScalarProperty Name="Tiempo" ColumnName="Tiempo" />
+                <ScalarProperty Name="Puntos" ColumnName="Puntos" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

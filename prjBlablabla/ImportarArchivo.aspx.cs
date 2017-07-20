@@ -135,7 +135,7 @@ namespace prjBlablabla
             {
 
 
-                var fracesLts = new List<fraseDTO>();
+                var fracesLts = new List<FraseTorreDTO>();
 
 
                 using (FileStream file = new FileStream(path, FileMode.Open, FileAccess.Read))
@@ -148,7 +148,7 @@ namespace prjBlablabla
 
                     foreach (DataRow row in table.Rows)
                     {
-                        var objFrase = new fraseDTO();
+                        var objFrase = new FraseTorreDTO();
 
 
                         objFrase.Id = int.Parse(row[0].ToString());
@@ -159,7 +159,7 @@ namespace prjBlablabla
                         objFrase.opcion2 = row[5].ToString();
                         objFrase.opcion3 = row[6].ToString();
                         objFrase.nivel = findID(levelId.Text);
-                        objFrase.juego = findID(gameId.Text);
+                        //objFrase.juego = findID(gameId.Text);
                         fracesLts.Add(objFrase);
                         cont++;
 
@@ -171,7 +171,7 @@ namespace prjBlablabla
 
                 File.Delete(path);
 
-                var gFrases = new FrasesData().GuardarFrases(fracesLts);
+                var gFrases = new FrasesData().GuardarFrasesTorre(fracesLts);
 
                 if (gFrases.Code != 0)
                     MensajeError("Al guardar frases, Detalle: " + gFrases.Message);
@@ -201,13 +201,13 @@ namespace prjBlablabla
             Excel.Worksheet workSheet = workBook.ActiveSheet;
             Excel.Range range = workSheet.UsedRange;
 
-            var fracesLts = new List<fraseSilabitosDTO>();
+            var fracesLts = new List<FraseSilabitosDTO>();
             var cont = 1;
             try
             {
                 for (int i = 2; i <= range.Rows.Count; i++)
                 {
-                    var objFrase = new fraseSilabitosDTO();
+                    var objFrase = new FraseSilabitosDTO();
 
 
                     objFrase.Id = int.Parse(((Excel.Range)range.Cells[i, 1]).Text);

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace prjBlablabla.DTO
 {
-    public class fraseSilabitosDTO
+    public class FraseSilabitosDTO
     {
         public int Id { get; set; }
         public string c1 { get; set; }
@@ -15,6 +15,7 @@ namespace prjBlablabla.DTO
         public string p2 { get; set; }
         public string orden { get; set; }
         public Nullable<short> acomodo { get; set; }
-        public int nivel { get; set; }
+        public Nullable<bool> estado { get; set; }
+        public Nullable<int> nivel { get; set; }
     }
 }
