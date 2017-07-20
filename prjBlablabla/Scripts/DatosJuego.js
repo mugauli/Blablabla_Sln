@@ -33,6 +33,78 @@
             }
         });
 
+        $('#fraseSilabitosTable').DataTable({
+            dom: "<'row itemHeader'<'col-sm-8'<'col-sm-12'l>><'col-sm-4'<'col-sm-12'f>>>rt<p>",
+            language: {
+                processing: "Procesando...",
+                search: "Buscar",
+                emptyTable: "No hay datos disponibles.",
+                zeroRecords: "No hay coincidencias con la busqueda.",
+                decimal: ".",
+                lengthMenu: "_MENU_ ",
+                paginate: {
+                    first: "Primero",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Último"
+                }
+            }
+        });
+
+        $('#frasesBosqueTable').DataTable({
+            dom: "<'row itemHeader'<'col-sm-8'<'col-sm-12'l>><'col-sm-4'<'col-sm-12'f>>>rt<p>",
+            language: {
+                processing: "Procesando...",
+                search: "Buscar",
+                emptyTable: "No hay datos disponibles.",
+                zeroRecords: "No hay coincidencias con la busqueda.",
+                decimal: ".",
+                lengthMenu: "_MENU_ ",
+                paginate: {
+                    first: "Primero",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Último"
+                }
+            }
+        });
+
+        $('#frasesCastillosTable').DataTable({
+            dom: "<'row itemHeader'<'col-sm-8'<'col-sm-12'l>><'col-sm-4'<'col-sm-12'f>>>rt<p>",
+            language: {
+                processing: "Procesando...",
+                search: "Buscar",
+                emptyTable: "No hay datos disponibles.",
+                zeroRecords: "No hay coincidencias con la busqueda.",
+                decimal: ".",
+                lengthMenu: "_MENU_ ",
+                paginate: {
+                    first: "Primero",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Último"
+                }
+            }
+        });
+
+        $('#frasesLagoTable').DataTable({
+            dom: "<'row itemHeader'<'col-sm-8'<'col-sm-12'l>><'col-sm-4'<'col-sm-12'f>>>rt<p>",
+            language: {
+                processing: "Procesando...",
+                search: "Buscar",
+                emptyTable: "No hay datos disponibles.",
+                zeroRecords: "No hay coincidencias con la busqueda.",
+                decimal: ".",
+                lengthMenu: "_MENU_ ",
+                paginate: {
+                    first: "Primero",
+                    previous: "Anterior",
+                    next: "Siguiente",
+                    last: "Último"
+                }
+            }
+        });
+
         //$("#fraseComunesTable tbody tr").click(function () {
         //    $("#addFrase").modal("show");
         //});
@@ -51,6 +123,7 @@
             $("#TipoFraseBorrar").val($(this).data("tipo"));
 
         });
+
     });
 
 

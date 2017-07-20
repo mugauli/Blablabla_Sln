@@ -12,16 +12,14 @@ namespace prjBlablabla.Datos
     using System;
     using System.Collections.Generic;
     
-    public partial class Alumnos
+    public partial class ctFrasesBosque
     {
-        public int Id_alumnos { get; set; }
-        public Nullable<int> Id_escuela_alumnos { get; set; }
-        public string nombre_alumnos { get; set; }
-        public string apellidoP_alumnos { get; set; }
-        public string apellidoM_alumnos { get; set; }
-        public Nullable<System.DateTime> fecha_nac_alumnos { get; set; }
-        public Nullable<int> no_lista_alumnos { get; set; }
-    
-        public virtual Escuelas Escuelas { get; set; }
+        public int Id { get; set; }
+        public string Frase { get; set; }
+        public string Opcion1 { get; set; }
+        public string Opcion2 { get; set; }
+        public Nullable<bool> Correcta { get; set; }
+        public byte Nivel { get; set; }
+        public bool Estado { get; set; }
     }
 }

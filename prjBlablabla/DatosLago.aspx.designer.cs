@@ -10,7 +10,7 @@
 namespace prjBlablabla {
     
     
-    public partial class DatosJuego {
+    public partial class DatosLago {
         
         /// <summary>
         /// Control IdFrase.
@@ -22,58 +22,31 @@ namespace prjBlablabla {
         protected global::System.Web.UI.WebControls.HiddenField IdFrase;
         
         /// <summary>
-        /// Control enun1.
+        /// Control Enunciado.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox enun1;
+        protected global::System.Web.UI.WebControls.TextBox Enunciado;
         
         /// <summary>
-        /// Control enun2.
+        /// Control Eleccion.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox enun2;
+        protected global::System.Web.UI.WebControls.CheckBox Eleccion;
         
         /// <summary>
-        /// Control opcion1.
+        /// Control ddlNivelGd.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox opcion1;
-        
-        /// <summary>
-        /// Control opcion2.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox opcion2;
-        
-        /// <summary>
-        /// Control correcta.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox correcta;
-        
-        /// <summary>
-        /// Control opcion3.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox opcion3;
+        protected global::System.Web.UI.WebControls.DropDownList ddlNivelGd;
         
         /// <summary>
         /// Control GuardarFrase.
@@ -112,12 +85,21 @@ namespace prjBlablabla {
         protected global::System.Web.UI.WebControls.Button btnBorrarFrase;
         
         /// <summary>
-        /// Control ltlTableFrases.
+        /// Control ddlNivel.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal ltlTableFrases;
+        protected global::System.Web.UI.WebControls.DropDownList ddlNivel;
+        
+        /// <summary>
+        /// Control ltFrasesLagoTable.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal ltFrasesLagoTable;
     }
 }

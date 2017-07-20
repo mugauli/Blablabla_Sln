@@ -74,21 +74,32 @@
                             <div class="menu_section">
                                 <ul class="nav side-menu">
                                     <li>
-                                        <a><i class="fa fa-home"></i>Dashboard <span class="fa fa-chevron-down"></span></a>
+                                        <a><i class="fa fa-bar-chart"></i>Dashboard <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="/index.aspx">Escuela</a></li>
                                             <li><a href="/PorNino.aspx">Niño</a></li>
                                             <li><a href="/PorGrupo.aspx">Grupo</a></li>
                                         </ul>
                                     </li>
-                                    <li>
-                                        <a><i class="fa fa-settings"></i>Configuración Nivel 1<span class="fa fa-chevron-down"></span></a>
+                                     <li>
+                                        <a><i class="fa fa-cogs"></i>Datos<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
-                                            <li><a href="/DatosJuego.aspx">Datos del juego</a></li>
-                                            <li><a href="/ImportarArchivo.aspx">Importar Configuración</a></li>
+                                            <li><a href="/DatosTorre.aspx">La torre del tesoro</a></li>
+                                            <li><a href="/DatosSilabitos.aspx">El pueblo de los silabitos</a></li>
+                                            <li><a href="/DatosBosque.aspx">El bosque sin color</a></li>
+                                            <li><a href="/DatosCastillo.aspx">El castillo del mal olor</a></li>
+                                            <li><a href="/DatosLago.aspx">El lago de la grama</a></li>
                                         </ul>
                                     </li>
                                     <li>
+                                        <a><i class="fa fa-cogs"></i>Configuración<span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">                                            
+                                            <li><a href="/ImportarArchivo.aspx">Importar Configuración</a></li>
+                                            <li><a href="/SubirResultados.aspx">Importar Datos del Juego</a></li>
+                                            <li><a href="/Escuelas.aspx">Escuelas</a></li>
+                                        </ul>
+                                    </li>
+                                    <%--   <li>
                                         <a><i class="fa fa-settings"></i>Configuración Nivel 2<span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="/DatosJuego.aspx">Datos del juego</a></li>
@@ -102,11 +113,11 @@
                                             <li><a href="/ImportarArchivo.aspx">Importar Configuración</a></li>
 
                                         </ul>
-                                    </li>
+                                    </li>--%>
 
 
 
-                                    <li>
+<%--                                    <li>
                                         <a><i class="fa fa-settings"></i>Carga de datos estadísticos <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
                                             <li><a href="/SubirResultados.aspx">Importar Datos</a></li>
@@ -117,8 +128,8 @@
                                         <ul class="nav child_menu">
                                             <li><a href="/Escuelas.aspx">Registrar</a></li>
                                         </ul>
-                                    </li>
- 
+                                    </li>--%>
+
                                     <!--    <li>
                                         <a><i class="fa fa-table"></i> Tablas <span class="fa fa-chevron-down"></span></a>
                                         <ul class="nav child_menu">
