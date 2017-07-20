@@ -16,6 +16,7 @@ namespace prjBlablabla.DTO
         public int NLista { get; set; }
         public int Nivel { get; set; }
         public int Resultado { get; set; }
+        public int Puntos { get; set; }
         public string Sexo { get; set; }
         public int Tiempo { get; set; }
         public DateTime Fecha { get; set; }

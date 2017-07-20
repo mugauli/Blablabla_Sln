@@ -56,11 +56,11 @@
                                     <div class="form-group col-md-3">
                                         <label class="filter-col" style="margin-right: 0;" for="pref-search">Juego:</label>
                                         <select id="game" class="form-control">
-                                            <option value="1">1</option>
+                                            <option selected="selected" value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
                                             <option value="4">4</option>
-                                            <option selected="selected" value="5">5</option>
+                                            <option  value="5">5</option>
                                         </select> 
                                     </div>
                                     <!-- form group [nivel] -->

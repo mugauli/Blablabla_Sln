@@ -183,6 +183,8 @@
     <Content Include="Css\DatosJuego.css" />
     <Content Include="Css\ImportarArchivo.css" />
     <Content Include="Css\Index.css" />
+    <Content Include="Css\PorGrupo.css" />
+    <Content Include="Css\PorNino.css" />
     <Content Include="Css\styleRadioButton.css" />
     <Content Include="DatosBosque.aspx" />
     <Content Include="DatosCastillo.aspx" />
@@ -259,6 +261,7 @@
     <Content Include="Scripts\Escuelas.js" />
     <Content Include="Scripts\Grupos.js" />
     <Content Include="Scripts\IndexCharts.js" />
+    <Content Include="Scripts\PorGrupoChart.js" />
     <Content Include="Scripts\PorNinoCharts.js" />
     <Content Include="Scripts\Preguntas.js" />
     <Content Include="SubirResultados.aspx" />
@@ -395,8 +398,9 @@
     <Compile Include="DTO\FraseSilabitosDTO.cs" />
     <Compile Include="DTO\GradoDTO.cs" />
     <Compile Include="DTO\GrupoDTO.cs" />
+    <Compile Include="DTO\GrupoResultDTO.cs" />
     <Compile Include="DTO\MethodResponseDTO.cs" />
-    <Compile Include="DTO\ResultadoDTO.cs" />
+    <Compile Include="FrecuentClases\ResultadoDTO.cs" />
     <Compile Include="DTO\ResultadoPorNinoDTO.cs" />
     <Compile Include="Escuelas.aspx.cs">
       <DependentUpon>Escuelas.aspx</DependentUpon>
@@ -405,6 +409,7 @@
     <Compile Include="Escuelas.aspx.designer.cs">
       <DependentUpon>Escuelas.aspx</DependentUpon>
     </Compile>
+    <Compile Include="FrecuentClases\GetGrupo.cs" />
     <Compile Include="Grupos.aspx.cs">
       <DependentUpon>Grupos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -476,10 +481,15 @@
     <Compile Include="XML\Eventos.cs" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="vendors\moment\moment.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="vendors\SitioJuego\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

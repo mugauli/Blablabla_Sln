@@ -1,7 +1,7 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="PorNino.aspx.cs" Inherits="prjBlablabla.PorNino" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Body" runat="server">
-
+    <link href="/Css/PorNino.css" rel="stylesheet" />
     <script src="/Scripts/PorNinoCharts.js"></script>
 
     <!-- top tiles -->
@@ -55,22 +55,22 @@
                                     <div class="form-group col-md-2">
                                         <label class="filter-col" style="margin-right: 0;" for="pref-perpage">Grupo:</label>
                                         <select id="group" class="form-control">
-                                            <option value="1">1</option>
+                                            <option selected="selected" value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
                                             <option value="4">4</option>
-                                            <option selected="selected" value="5">5</option>
+                                            <option  value="5">5</option>
                                         </select>
                                     </div>
                                     <!-- form group [juego] -->
                                     <div class="form-group col-md-2">
                                         <label class="filter-col" style="margin-right: 0;" for="pref-search">Juego:</label>
                                         <select id="game" class="form-control">
-                                            <option value="1">1</option>
+                                            <option selected="selected" value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
                                             <option value="4">4</option>
-                                            <option selected="selected" value="5">5</option>
+                                            <option  value="5">5</option>
                                         </select> 
                                     </div>
                                     <!-- form group [nivel] -->

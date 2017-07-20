@@ -2,15 +2,12 @@
 
 $(document).ready(function () {
 
-    var idEscuela = 0;
-    var idJuego = 0;
-    var idNivel = 0;
-    var initDate = "";
-    var endDate = "";
+    var idEscuela = $("#ddListEscuelas option:selected").val();
+    var idJuego = $("#game option:selected").val();
+    var idNivel = $("#level option:selected").val();
+    var initDate = '01/01/2017';
+    var endDate = '31/03/2017';
 
-    var chartlabels = ["1/1", "2/1", "1/2", "2/2", "1/3", "2/3", "1/4"];
-    var aciertos = [70, 60, 50, 40, 30, 20, 10];
-    var errores = [1, 2, 3, 4, 5, 6, 7];
 
     $("#filterAply").click(function () {
         GetResults(idEscuela, idJuego, idNivel, initDate, endDate); 
@@ -41,7 +38,7 @@ $(document).ready(function () {
         endDate = '31/03/2017';
     });
 
-
+    GetResults(idEscuela, idJuego , idNivel, initDate, endDate);
 
     //loadChart(chartlabels, aciertos, errores);
 });
