@@ -1,6 +1,4 @@
 ﻿var idEscuela = $("#ddListEscuelas option:selected").val();
-var idJuego = $("#game option:selected").val();
-var idNivel = $("#level option:selected").val();
 var initDate = '01/01/2017';
 var endDate = '31/03/2017';
 
@@ -14,16 +12,6 @@ $(document).ready(function () {
     $("#ddListEscuelas").change(function () {
         idEscuela = $("#ddListEscuelas option:selected").val();
         GetGruops(idEscuela);
-    });
-
-    //Listener Filtro Escuelas
-    $("#game").change(function () {
-        idJuego = $("#game option:selected").val();
-    });
-
-    //Listener Filtro Escuelas
-    $("#level").change(function () {
-        idNivel = $("#level option:selected").val();
     });
 
     //Listener Filtro Fechas

@@ -474,6 +474,7 @@
     <Compile Include="UserControls\SubirArchivo.ascx.designer.cs">
       <DependentUpon>SubirArchivo.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Util\FileUtil.cs" />
     <Compile Include="WebAPI\DatosJuegoController.cs" />
     <Compile Include="XML\Alumno.cs" />
     <Compile Include="XML\Ensayos.cs" />
