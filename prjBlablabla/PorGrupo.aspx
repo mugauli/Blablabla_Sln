@@ -79,6 +79,26 @@
                                         <select id="group" class="form-control">
                                         </select>
                                     </div>
+                                    <!-- form group [juego] -->
+                                    <div class="form-group col-md-2">
+                                        <label class="filter-col" style="margin-right: 0;" for="pref-search">Juego:</label>
+                                        <select id="game" class="form-control">
+                                            <option selected="selected" value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option  value="5">5</option>
+                                        </select> 
+                                    </div>
+                                    <!-- form group [nivel] -->
+                                    <div class="form-group col-md-2">
+                                        <label class="filter-col" style="margin-right: 0;" for="pref-search">Nivel:</label>
+                                        <select id="level" class="form-control">
+                                            <option selected="selected" value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                        </select> 
+                                    </div>
                                      <!-- form group [fecha] -->
                                     <div class="form-group col-md-3">
                                         <label class="filter-col" style="margin-right: 0;" for="pref-search">Fecha:</label>

@@ -1,6 +1,5 @@
 ﻿using prjBlablabla.Common.Entities;
 using prjBlablabla.Datos;
-using prjBlablabla.Util;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,23 +23,14 @@ namespace prjBlablabla
 
         private void FillEscuelasDropDown()
         {
-            try
+            var datostablaEscuela = new EscuelasData().ObtenerEscuelas();
+            if (datostablaEscuela.Code == 0)
             {
-                FileUtil.WriteInLogFile("Entrando FillDD");
-                var datostablaEscuela = new EscuelasData().ObtenerEscuelas();
-                FileUtil.WriteInLogFile("datos Obtenido");
-                if (datostablaEscuela.Code == 0)
-                {
-                    ddListEscuelas.DataTextField = "Nombre";
-                    ddListEscuelas.DataValueField = "ID";
-                    ddListEscuelas.DataSource = datostablaEscuela.Result;
-                    ddListEscuelas.DataBind();
-                }
-            }catch(Exception ex)
-            {
-                FileUtil.WriteInLogFile("Error al llenar DD:" + ex.Message);
+                ddListEscuelas.DataTextField = "Nombre";
+                ddListEscuelas.DataValueField = "ID";
+                ddListEscuelas.DataSource = datostablaEscuela.Result;
+                ddListEscuelas.DataBind();
             }
-            
         }
 
         [WebMethod]

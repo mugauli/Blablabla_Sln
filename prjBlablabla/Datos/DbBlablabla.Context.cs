@@ -12,9 +12,6 @@ namespace prjBlablabla.Datos
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Objects;
-    using System.Data.Objects.DataClasses;
-    using System.Linq;
     
     public partial class BlablablaSitioEntities : DbContext
     {
@@ -39,6 +36,15 @@ namespace prjBlablabla.Datos
         public DbSet<Grado> Grado { get; set; }
         public DbSet<Grupo> Grupo { get; set; }
         public DbSet<Resultados> Resultados { get; set; }
+    
+        public virtual int sp_AddResultado(Nullable<int> idEscuela, Nullable<int> nLista, Nullable<int> grado, string grupo, Nullable<int> idJuego, Nullable<int> nivel, Nullable<int> consecutivo, Nullable<int> resultado, Nullable<int> edad, string sexo, Nullable<int> tiempo, Nullable<System.DateTime> fecha, Nullable<int> puntos)
+        {
+            var tipoParameter = tipo.HasValue ?
+                new ObjectParameter("tipo", tipo) :
+                new ObjectParameter("tipo", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_InactivaFrases", tipoParameter);
+        }
     
         public virtual int sp_AddResultado(Nullable<int> idEscuela, Nullable<int> nLista, Nullable<int> grado, string grupo, Nullable<int> idJuego, Nullable<int> nivel, Nullable<int> consecutivo, Nullable<int> resultado, Nullable<int> edad, string sexo, Nullable<int> tiempo, Nullable<System.DateTime> fecha, Nullable<int> puntos)
         {
@@ -197,11 +203,19 @@ namespace prjBlablabla.Datos
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ResNinoBy_EscuelaJuegoNivelGradoGrupo_Result>("sp_ResNinoBy_EscuelaJuegoNivelGradoGrupo", idEscuelaParameter, idJuegoParameter, nivelParameter, gradoParameter, grupoParameter, fechainiParameter, fechafinParameter);
         }
     
-        public virtual ObjectResult<sp_ResultsEscuelaBy_GradoGrupo_Result> sp_ResultsEscuelaBy_GradoGrupo(Nullable<int> idEscuela, Nullable<int> grado, string grupo, string fechaini, string fechafin)
+        public virtual ObjectResult<sp_ResGradoGrupoBy_EscuelaJuegoNivel_Result> sp_ResGradoGrupoBy_EscuelaJuegoNivel(Nullable<int> idEscuela, Nullable<int> idJuego, Nullable<int> nivel, Nullable<int> grado, string grupo, string fechaini, string fechafin)
         {
             var idEscuelaParameter = idEscuela.HasValue ?
                 new ObjectParameter("IdEscuela", idEscuela) :
                 new ObjectParameter("IdEscuela", typeof(int));
+    
+            var idJuegoParameter = idJuego.HasValue ?
+                new ObjectParameter("IdJuego", idJuego) :
+                new ObjectParameter("IdJuego", typeof(int));
+    
+            var nivelParameter = nivel.HasValue ?
+                new ObjectParameter("Nivel", nivel) :
+                new ObjectParameter("Nivel", typeof(int));
     
             var gradoParameter = grado.HasValue ?
                 new ObjectParameter("Grado", grado) :
@@ -219,32 +233,7 @@ namespace prjBlablabla.Datos
                 new ObjectParameter("fechafin", fechafin) :
                 new ObjectParameter("fechafin", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ResultsEscuelaBy_GradoGrupo_Result>("sp_ResultsEscuelaBy_GradoGrupo", idEscuelaParameter, gradoParameter, grupoParameter, fechainiParameter, fechafinParameter);
-        }
-    
-        public virtual ObjectResult<sp_ResultsGrupoBy_EscuelaGrado_Result> sp_ResultsGrupoBy_EscuelaGrado(Nullable<int> idEscuela, Nullable<int> grado, string grupo, string fechaini, string fechafin)
-        {
-            var idEscuelaParameter = idEscuela.HasValue ?
-                new ObjectParameter("IdEscuela", idEscuela) :
-                new ObjectParameter("IdEscuela", typeof(int));
-    
-            var gradoParameter = grado.HasValue ?
-                new ObjectParameter("Grado", grado) :
-                new ObjectParameter("Grado", typeof(int));
-    
-            var grupoParameter = grupo != null ?
-                new ObjectParameter("Grupo", grupo) :
-                new ObjectParameter("Grupo", typeof(string));
-    
-            var fechainiParameter = fechaini != null ?
-                new ObjectParameter("fechaini", fechaini) :
-                new ObjectParameter("fechaini", typeof(string));
-    
-            var fechafinParameter = fechafin != null ?
-                new ObjectParameter("fechafin", fechafin) :
-                new ObjectParameter("fechafin", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ResultsGrupoBy_EscuelaGrado_Result>("sp_ResultsGrupoBy_EscuelaGrado", idEscuelaParameter, gradoParameter, grupoParameter, fechainiParameter, fechafinParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ResGradoGrupoBy_EscuelaJuegoNivel_Result>("sp_ResGradoGrupoBy_EscuelaJuegoNivel", idEscuelaParameter, idJuegoParameter, nivelParameter, gradoParameter, grupoParameter, fechainiParameter, fechafinParameter);
         }
     
         public virtual ObjectResult<sp_ResultsNinoBy_EscuelaJuegoNivelGradoGrupo_Result> sp_ResultsNinoBy_EscuelaJuegoNivelGradoGrupo(Nullable<int> idEscuela, Nullable<int> idJuego, Nullable<int> nivel, Nullable<int> grado, string grupo, string fechaini, string fechafin)
@@ -278,6 +267,31 @@ namespace prjBlablabla.Datos
                 new ObjectParameter("fechafin", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ResultsNinoBy_EscuelaJuegoNivelGradoGrupo_Result>("sp_ResultsNinoBy_EscuelaJuegoNivelGradoGrupo", idEscuelaParameter, idJuegoParameter, nivelParameter, gradoParameter, grupoParameter, fechainiParameter, fechafinParameter);
+        }
+    
+        public virtual ObjectResult<sp_ResultsGrupoBy_EscuelaGrado_Result> sp_ResultsGrupoBy_EscuelaGrado(Nullable<int> idEscuela, Nullable<int> grado, string grupo, string fechaini, string fechafin)
+        {
+            var idEscuelaParameter = idEscuela.HasValue ?
+                new ObjectParameter("IdEscuela", idEscuela) :
+                new ObjectParameter("IdEscuela", typeof(int));
+    
+            var gradoParameter = grado.HasValue ?
+                new ObjectParameter("Grado", grado) :
+                new ObjectParameter("Grado", typeof(int));
+    
+            var grupoParameter = grupo != null ?
+                new ObjectParameter("Grupo", grupo) :
+                new ObjectParameter("Grupo", typeof(string));
+    
+            var fechainiParameter = fechaini != null ?
+                new ObjectParameter("fechaini", fechaini) :
+                new ObjectParameter("fechaini", typeof(string));
+    
+            var fechafinParameter = fechafin != null ?
+                new ObjectParameter("fechafin", fechafin) :
+                new ObjectParameter("fechafin", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ResultsGrupoBy_EscuelaGrado_Result>("sp_ResultsGrupoBy_EscuelaGrado", idEscuelaParameter, gradoParameter, grupoParameter, fechainiParameter, fechafinParameter);
         }
     }
 }

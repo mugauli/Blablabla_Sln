@@ -186,11 +186,7 @@
     <Content Include="Css\PorGrupo.css" />
     <Content Include="Css\PorNino.css" />
     <Content Include="Css\styleRadioButton.css" />
-    <Content Include="DatosBosque.aspx" />
-    <Content Include="DatosCastillo.aspx" />
-    <Content Include="DatosLago.aspx" />
-    <Content Include="DatosSilabitos.aspx" />
-    <Content Include="DatosTorre.aspx" />
+    <Content Include="DatosJuego.aspx" />
     <Content Include="Datos\DbBlablabla.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>DbBlablabla.Context.cs</LastGenOutput>
@@ -4433,54 +4429,17 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DatosBosque.aspx.cs">
-      <DependentUpon>DatosBosque.aspx</DependentUpon>
+    <Compile Include="DatosJuego.aspx.cs">
+      <DependentUpon>DatosJuego.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="DatosBosque.aspx.designer.cs">
-      <DependentUpon>DatosBosque.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="DatosCastillo.aspx.cs">
-      <DependentUpon>DatosCastillo.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DatosCastillo.aspx.designer.cs">
-      <DependentUpon>DatosCastillo.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="DatosLago.aspx.cs">
-      <DependentUpon>DatosLago.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DatosLago.aspx.designer.cs">
-      <DependentUpon>DatosLago.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="DatosSilabitos.aspx.cs">
-      <DependentUpon>DatosSilabitos.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DatosSilabitos.aspx.designer.cs">
-      <DependentUpon>DatosSilabitos.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="DatosTorre.aspx.cs">
-      <DependentUpon>DatosTorre.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="DatosTorre.aspx.designer.cs">
-      <DependentUpon>DatosTorre.aspx</DependentUpon>
+    <Compile Include="DatosJuego.aspx.designer.cs">
+      <DependentUpon>DatosJuego.aspx</DependentUpon>
     </Compile>
     <Compile Include="Datos\Alumnos.cs">
       <DependentUpon>DbBlablabla.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\ctFrases.cs">
-      <DependentUpon>DbBlablabla.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Datos\ctFrasesBosque.cs">
-      <DependentUpon>DbBlablabla.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Datos\ctFrasesCastillo.cs">
-      <DependentUpon>DbBlablabla.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Datos\ctFrasesLago.cs">
       <DependentUpon>DbBlablabla.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\ctFrasesSilabitos.cs">
@@ -4521,13 +4480,28 @@
       <DependentUpon>DbBlablabla.tt</DependentUpon>
     </Compile>
     <Compile Include="Datos\ResultadosData.cs" />
+    <Compile Include="Datos\sp_GetGruposByEscuela_Result.cs">
+      <DependentUpon>DbBlablabla.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\sp_ResBy_EscuelaJuegoNivel_Result.cs">
+      <DependentUpon>DbBlablabla.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\sp_ResGradoGrupoBy_EscuelaJuegoNivel_Result.cs">
+      <DependentUpon>DbBlablabla.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\sp_ResNinoBy_EscuelaJuegoNivelGradoGrupo_Result.cs">
+      <DependentUpon>DbBlablabla.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\sp_ResultsGrupoBy_EscuelaGrado_Result.cs">
+      <DependentUpon>DbBlablabla.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Datos\sp_ResultsNinoBy_EscuelaJuegoNivelGradoGrupo_Result.cs">
+      <DependentUpon>DbBlablabla.tt</DependentUpon>
+    </Compile>
     <Compile Include="DTO\AlumnoDTO.cs" />
     <Compile Include="DTO\EscuelaDTO.cs" />
-    <Compile Include="DTO\FraseCastilloDTO.cs" />
-    <Compile Include="DTO\FraseLagoDTO.cs" />
-    <Compile Include="DTO\FrasesBosqueDTO.cs" />
+    <Compile Include="DTO\fraseDTO.cs" />
     <Compile Include="DTO\fraseSilabitosDTO.cs" />
-    <Compile Include="DTO\FraseTorreDTO.cs" />
     <Compile Include="DTO\GradoDTO.cs" />
     <Compile Include="DTO\GrupoDTO.cs" />
     <Compile Include="DTO\GrupoResultDTO.cs" />
@@ -4606,7 +4580,6 @@
     <Compile Include="UserControls\SubirArchivo.ascx.designer.cs">
       <DependentUpon>SubirArchivo.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Util\FileUtil.cs" />
     <Compile Include="WebAPI\DatosJuegoController.cs" />
     <Compile Include="XML\Alumno.cs" />
     <Compile Include="XML\Ensayos.cs" />
