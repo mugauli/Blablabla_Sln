@@ -235,24 +235,6 @@
       <DependentUpon>DbBlablabla.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
-    <Content Include="Reference\NPOI 2.2.1 binary package\Release\logo\120_120.jpg" />
-    <Content Include="Reference\NPOI 2.2.1 binary package\Release\logo\240_240.png" />
-    <Content Include="Reference\NPOI 2.2.1 binary package\Release\logo\32_32.jpg" />
-    <Content Include="Reference\NPOI 2.2.1 binary package\Release\logo\60_60.jpg" />
-    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net20\ICSharpCode.SharpZipLib.dll" />
-    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net20\NPOI.dll" />
-    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net20\NPOI.OOXML.dll" />
-    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net20\NPOI.OpenXml4Net.dll" />
-    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net20\NPOI.OpenXmlFormats.dll" />
-    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net20\NPOI.XML" />
-    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net40\ICSharpCode.SharpZipLib.dll" />
-    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net40\NPOI.dll" />
-    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net40\NPOI.OOXML.dll" />
-    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net40\NPOI.OpenXml4Net.dll" />
-    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net40\NPOI.OpenXmlFormats.dll" />
-    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Net40\NPOI.XML" />
-    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Read Me.txt" />
-    <Content Include="Reference\NPOI 2.2.1 binary package\Release\Release Notes.txt" />
     <Content Include="Scripts\DatosJuego.js" />
     <Content Include="Scripts\Escuelas.js" />
     <Content Include="Scripts\Grupos.js" />
@@ -1053,7 +1035,7 @@
     <Content Include="vendors\validator\README.md" />
     <Content Include="vendors\validator\validator.jquery.json" />
     <Content Include="vendors\bootstrap-select\css\bootstrap-select.css.map" />
-    <Content Include="Reference\NPOI 2.2.1 binary package\Release\LICENSE" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
