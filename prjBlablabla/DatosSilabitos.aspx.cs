@@ -96,5 +96,10 @@ namespace prjBlablabla
             Orden.Text = "";
             Acomodo.Text = "";
         }
+
+        protected void ddlNivel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            llenarTabla(Convert.ToInt16(ddlNivel.SelectedItem.Value));
+        }
     }
 }

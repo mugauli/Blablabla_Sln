@@ -35,16 +35,11 @@ namespace prjBlablabla
             if (fileUploader1.HasFile)
             {
                 //Verificar el archivo a guardar
-                if (rbFrases.Checked)
-                {
-                    //metodo propio guardar archivo
-                    GuardarArchivo(fileUploader1.PostedFile);
-                }
-                else
-                {
-                    //metodo propio guardar archivo
-                    GuardarArchivoSilabitos(fileUploader1.PostedFile);
-                }
+
+
+                //metodo propio guardar archivo
+                GuardarArchivo(fileUploader1.PostedFile, Convert.ToInt32(hddGame.Value));
+
             }
             else
                 MensajeError("Seleccione un archivo del disco duro.");
@@ -52,7 +47,7 @@ namespace prjBlablabla
 
         }
 
-        private void GuardarArchivo(HttpPostedFile file)
+        private void GuardarArchivo(HttpPostedFile file, int game)
         {
             if (file.FileName.EndsWith("xls") || file.FileName.EndsWith("xlsx"))
             {
@@ -73,7 +68,7 @@ namespace prjBlablabla
                         File.Delete(archivo);
 
                     file.SaveAs(archivo);
-                    GuardarDatosExcel(archivo);
+                    GuardarDatosExcel(archivo, game);
 
                 }
                 catch (Exception ex)
@@ -126,7 +121,7 @@ namespace prjBlablabla
 
         }
 
-        private void GuardarDatosExcel(string path)
+        private void GuardarDatosExcel(string path, int game)
         {
             var cont = 1;
             //Leemos el archivo de excel
@@ -135,7 +130,7 @@ namespace prjBlablabla
             {
 
 
-                var fracesLts = new List<FraseTorreDTO>();
+
 
 
                 using (FileStream file = new FileStream(path, FileMode.Open, FileAccess.Read))
@@ -145,38 +140,161 @@ namespace prjBlablabla
                     xlsxToDT();
 
                     var table = dataSet1.Tables[0];
-
-                    foreach (DataRow row in table.Rows)
+                    if (game == 1)
                     {
-                        var objFrase = new FraseTorreDTO();
+                        var fracesLts = new List<FraseTorreDTO>();
+                        foreach (DataRow row in table.Rows)
+                        {
+                            var objFrase = new FraseTorreDTO();
 
 
-                        objFrase.Id = int.Parse(row[0].ToString());
-                        objFrase.enun1 = row[1].ToString();
-                        objFrase.enun2 = row[2].ToString();
-                        objFrase.correcta = short.Parse(row[3].ToString());
-                        objFrase.opcion1 = row[4].ToString();
-                        objFrase.opcion2 = row[5].ToString();
-                        objFrase.opcion3 = row[6].ToString();
-                        objFrase.nivel = findID(levelId.Text);
-                        //objFrase.juego = findID(gameId.Text);
-                        fracesLts.Add(objFrase);
-                        cont++;
+                            objFrase.Id = int.Parse(row[0].ToString());
+                            objFrase.enun1 = row[1].ToString();
+                            objFrase.enun2 = row[2].ToString();
+                            objFrase.correcta = short.Parse(row[3].ToString());
+                            objFrase.opcion1 = row[4].ToString();
+                            objFrase.opcion2 = row[5].ToString();
+                            objFrase.opcion3 = row[6].ToString();
+                            objFrase.nivel = findID(levelId.Text);
+                            //objFrase.juego = findID(gameId.Text);
+                            fracesLts.Add(objFrase);
+                            cont++;
 
+                        }
+
+                        File.Delete(path);
+
+                        var gFrases = new FrasesData().GuardarFrasesTorre(fracesLts);
+
+                        if (gFrases.Code != 0)
+                            MensajeError("Al guardar frases, Detalle: " + gFrases.Message);
+                        else
+                            lblError.Text = "Archivo cargado con éxito.";
+                    }
+                    else if (game == 2)
+                    {
+                        var fracesLts = new List<FraseSilabitosDTO>();
+                        foreach (DataRow row in table.Rows)
+                        {
+                            var objFrase = new FraseSilabitosDTO();
+
+
+                            objFrase.Id = int.Parse(row[0].ToString());
+                            objFrase.c1 = row[1].ToString();
+                            objFrase.c2 = row[2].ToString();
+                            objFrase.c3 = row[3].ToString();
+                            objFrase.p1 = row[4].ToString();
+                            objFrase.p2 = row[5].ToString();
+                            objFrase.orden = row[6].ToString();
+                            objFrase.acomodo = short.Parse(row[7].ToString());
+                            objFrase.estado = true;
+                            objFrase.nivel = findID(levelId.Text);
+
+                            fracesLts.Add(objFrase);
+                            cont++;
+
+
+                        }
+                        File.Delete(path);
+
+                        var gFrases = new FrasesData().GuardarFrasesSilabitos(fracesLts);
+
+                        if (gFrases.Code != 0)
+                            MensajeError("Al guardar frases, Detalle: " + gFrases.Message);
+                        else
+                            lblError.Text = "Archivo cargado con éxito.";
+                    }
+                    else if (game == 3)
+                    {
+                        var fracesLts = new List<FrasesBosqueDTO>();
+                        foreach (DataRow row in table.Rows)
+                        {
+                            var objFrase = new FrasesBosqueDTO();
+
+
+                            objFrase.Id = int.Parse(row[0].ToString());
+                            objFrase.Frase = row[1].ToString();
+                            objFrase.Opcion1 = row[2].ToString();
+                            objFrase.Opcion2 = row[3].ToString();
+                            objFrase.Correcta = row[4].ToString().Equals("2");
+                            objFrase.Nivel = (byte)findID(levelId.Text);
+                            objFrase.Estado = true;
+
+
+                            fracesLts.Add(objFrase);
+                            cont++;
+
+
+                        }
+                        File.Delete(path);
+
+                        var gFrases = new FrasesData().GuardarFrasesBosque(fracesLts);
+
+                        if (gFrases.Code != 0)
+                            MensajeError("Al guardar frases, Detalle: " + gFrases.Message);
+                        else
+                            lblError.Text = "Archivo cargado con éxito.";
+                    }
+                    else if (game == 4)
+                    {
+                        var fracesLts = new List<FraseCastilloDTO>();
+                        foreach (DataRow row in table.Rows)
+                        {
+                            var objFrase = new FraseCastilloDTO();
+
+
+                            objFrase.Id = int.Parse(row[0].ToString());
+                            objFrase.Enunciado1 = row[1].ToString();
+                            objFrase.Enunciado2 = row[2].ToString();
+                            objFrase.Correcta = row[3].ToString().Equals("0");
+                            objFrase.Nivel = (byte)findID(levelId.Text);
+                            objFrase.Estado = true;
+                            fracesLts.Add(objFrase);
+                            cont++;
+
+    }
+                        File.Delete(path);
+
+                        var gFrases = new FrasesData().GuardarFrasesCastillo(fracesLts);
+
+                        if (gFrases.Code != 0)
+                            MensajeError("Al guardar frases, Detalle: " + gFrases.Message);
+                        else
+                            lblError.Text = "Archivo cargado con éxito.";
+                    }
+
+                    else if (game == 5)
+                    {
+                        var fracesLts = new List<FraseLagoDTO>();
+                        foreach (DataRow row in table.Rows)
+                        {
+                            var objFrase = new FraseLagoDTO();
+
+
+                            objFrase.Id = int.Parse(row[0].ToString());
+                            objFrase.Enunciado = row[1].ToString();
+                            objFrase.Eleccion = row[2].ToString().Equals("0");
+                            objFrase.Nivel = (byte)findID(levelId.Text);
+                            objFrase.Estado = true;
+                            fracesLts.Add(objFrase);
+                            cont++;
+
+                        }
+                        File.Delete(path);
+
+                        var gFrases = new FrasesData().GuardarFrasesLago(fracesLts);
+
+                        if (gFrases.Code != 0)
+                            MensajeError("Al guardar frases, Detalle: " + gFrases.Message);
+                        else
+                            lblError.Text = "Archivo cargado con éxito.";
                     }
 
 
                 }
 
 
-                File.Delete(path);
 
-                var gFrases = new FrasesData().GuardarFrasesTorre(fracesLts);
-
-                if (gFrases.Code != 0)
-                    MensajeError("Al guardar frases, Detalle: " + gFrases.Message);
-                else
-                    lblError.Text = "Archivo cargado con éxito.";
 
 
             }

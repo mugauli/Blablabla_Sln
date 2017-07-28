@@ -83,5 +83,10 @@ namespace prjBlablabla
             enun2.Text = "";
             correcta.Text = "";
         }
+
+        protected void ddlNivel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            llenarTabla(Convert.ToInt16(ddlNivel.SelectedItem.Value));
+        }
     }
 }

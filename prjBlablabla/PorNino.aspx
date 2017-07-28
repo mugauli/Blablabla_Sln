@@ -1,42 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="PorNino.aspx.cs" Inherits="prjBlablabla.PorNino" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Body" runat="server">
-
+    <link href="/Css/PorNino.css" rel="stylesheet" />
     <script src="/Scripts/PorNinoCharts.js"></script>
 
     <!-- top tiles -->
-    <div class="row tile_count">
-        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top"><i></i>República de Chipre</span>
-            <div class="count">Escuela</div>
-
-        </div>
-        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-clock-o"></i>Grupo</span>
-            <div class="count">4 "A"</div>
-
-        </div>
-        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-user"></i>Semana / Mes</span>
-            <div class="count green">2 / 4</div>
-
-        </div>
-        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-user"></i>Juego</span>
-            <div class="count">LG</div>
-
-        </div>
-        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-user"></i>Promedio grupal</span>
-            <div class="count">60%</div>
-
-        </div>
-        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top"><i class="fa fa-user"></i>Desv. estándar</span>
-            <div class="count">12</div>
-
-        </div>
-    </div>
+         <div class="page-title">
+			<h3>Concentrado de datos según niño.</h3>
+		</div>
     <!-- /top tiles -->
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
@@ -55,22 +26,22 @@
                                     <div class="form-group col-md-2">
                                         <label class="filter-col" style="margin-right: 0;" for="pref-perpage">Grupo:</label>
                                         <select id="group" class="form-control">
-                                            <option value="1">1</option>
+                                            <option selected="selected" value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
                                             <option value="4">4</option>
-                                            <option selected="selected" value="5">5</option>
+                                            <option  value="5">5</option>
                                         </select>
                                     </div>
                                     <!-- form group [juego] -->
                                     <div class="form-group col-md-2">
                                         <label class="filter-col" style="margin-right: 0;" for="pref-search">Juego:</label>
                                         <select id="game" class="form-control">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option selected="selected" value="5">5</option>
+                                            <option selected="selected" value="1">La torre del tesoro</option>
+                                            <option value="2">El pueblo de los silabitos</option>
+                                            <option value="3">El bosque sin color</option>
+                                            <option value="4">El castillo del mal olor</option>
+                                            <option  value="5">El lago de la grama</option>
                                         </select> 
                                     </div>
                                     <!-- form group [nivel] -->

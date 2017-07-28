@@ -17,6 +17,7 @@ namespace prjBlablabla.DTO
         public double Aciertos_x100 { get; set; }
         public double Errores_x100 { get; set; }
         public double Teimpo_reaccion { get; set; }
+        public int Puntos { get; set; }
 
 
     }

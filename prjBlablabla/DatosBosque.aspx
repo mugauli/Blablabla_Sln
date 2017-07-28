@@ -161,6 +161,14 @@
                     <div class="row">
                         <button type="button" id="agregarFrasesBosque" class="btn btn-primary dropdown-toggle waves-effect waves-light" data-toggle="modal" data-target="#addFrase">Agregar <span class="m-l-5"><i class="fa fa-plus-circle"></i></span></button>
                     </div>
+                     <div class="row">
+                        <div class="col-md-5"></div>
+                        <asp:DropDownList runat="server" AutoPostBack="true" ID="ddlNivel" CssClass="col-md-2 " OnSelectedIndexChanged="ddlNivel_SelectedIndexChanged">
+                            <asp:ListItem Text="Nivel 1" Value="1" Selected="True"></asp:ListItem>
+                            <asp:ListItem Text="Nivel 2" Value="2"></asp:ListItem>
+                            <asp:ListItem Text="Nivel 3" Value="3"></asp:ListItem>
+                        </asp:DropDownList>
+                    </div>
                     <table id="frasesBosqueTable" class="display" cellspacing="0" width="100%">
                         <thead>
                             <tr>

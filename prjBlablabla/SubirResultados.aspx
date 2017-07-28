@@ -15,7 +15,7 @@
                 <div class="row">
                     <div class="input-group" id="gameSelectContainer">
                         <label>Selecciona una Escuela</label>
-                            <asp:DropDownList  AutoPostBack="true" ID="ddListEscuelas" runat="server" ClientIDMode="Static" OnSelectedIndexChanged="ddListEscuelas_SelectedIndexChanged">
+                            <asp:DropDownList  AutoPostBack="true" ID="ddListEscuelas" runat="server" CssClass="form-control" ClientIDMode="Static" OnSelectedIndexChanged="ddListEscuelas_SelectedIndexChanged">
                             </asp:DropDownList>
                     </div>
                 </div>

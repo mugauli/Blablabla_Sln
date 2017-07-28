@@ -80,5 +80,10 @@ namespace prjBlablabla
             Enunciado.Text = "";
             Eleccion.Checked = false;
         }
+
+        protected void ddlNivel_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            llenarTabla(Convert.ToInt16(ddlNivel.SelectedItem.Value));
+        }
     }
 }
