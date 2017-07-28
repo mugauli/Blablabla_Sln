@@ -1,2 +1,0 @@
-# Blablabla_Sln
-Proyecto
