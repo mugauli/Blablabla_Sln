@@ -135,6 +135,7 @@ namespace prjBlablabla
                             Fecha = Convert.ToDateTime(evnt.Fecha.Substring(0, 2) + "/" + evnt.Fecha.Substring(2, 2) + "/" + evnt.Fecha.Substring(4, 4)),
                             Sexo = evnt.Alumno.Sexo,
                             Tiempo = ensy.Tiempo,
+                            Puntos = ensy.Puntos
                         };
                         
 

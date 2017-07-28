@@ -185,7 +185,8 @@
                         <button type="button" id="agregarAsg" class="btn btn-primary dropdown-toggle waves-effect waves-light" data-toggle="modal" data-target="#addFrase">Agregar <span class="m-l-5"><i class="fa fa-plus-circle"></i></span></button>
                     </div>
                     <div class="row">
-                        <asp:DropDownList runat="server" ID="ddlNivel" CssClass="col-md-1" OnSelectedIndexChanged="ddlNivel_SelectedIndexChanged">
+                        <div class="col-md-5"></div>
+                        <asp:DropDownList runat="server" AutoPostBack="true" ID="ddlNivel" CssClass="col-md-2 " OnSelectedIndexChanged="ddlNivel_SelectedIndexChanged">
                             <asp:ListItem Text="Nivel 1" Value="1" Selected="True"></asp:ListItem>
                             <asp:ListItem Text="Nivel 2" Value="2"></asp:ListItem>
                             <asp:ListItem Text="Nivel 3" Value="3"></asp:ListItem>

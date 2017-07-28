@@ -1,0 +1,11 @@
+﻿#reportrange {
+    background: #fff;
+    cursor: pointer;
+    padding: 6px 55px;
+    border: 1px solid #ccc;
+    float: left;
+}
+
+#filterAply {
+    float: right;
+}

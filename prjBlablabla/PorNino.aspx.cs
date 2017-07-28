@@ -33,7 +33,7 @@ namespace prjBlablabla
             }
         }
 
-        [WebMethod]
+        [WebMethod] 
         public static string GetGruposByEscuela(int idEscuela)
         {
             ResultToGroup res;
@@ -78,7 +78,7 @@ namespace prjBlablabla
                 {
                     if (datostablaResNino.Result.Count == 0)
                     {
-                        res = new ResultToNino(false, periodosLst.ToArray(), resLst.ToArray());
+                        res = new ResultToNino(false, periodosLst.ToArray(), resLst.ToArray(),new int[] { },new int[] { });
                     }
                     else
                     {
@@ -96,16 +96,45 @@ namespace prjBlablabla
                 }
                 else
                 {
-                    res = new ResultToNino(false, periodosLst.ToArray(), resLst.ToArray());
+                    res = new ResultToNino(false, periodosLst.ToArray(), resLst.ToArray(), new int[] { }, new int[] { });
                 }
             }
 
-            res = new ResultToNino(true, periodosLst.ToArray(), resLst.ToArray());
+            var aciertos = new int[] { };
+            var errores = new int[] { };
+            GetGrupoRes_By_EscuelaJuegoNivel(idEscuela,juego,nivel, Convert.ToInt32(grado_grupo[0]), grado_grupo[1],filterQueryLst,out aciertos,out errores);
+
+            res = new ResultToNino(true, periodosLst.ToArray(), resLst.ToArray(), aciertos, errores);
 
 
             System.Web.Script.Serialization.JavaScriptSerializer TheSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
             var TheJson = TheSerializer.Serialize(res);
             return TheJson;
+        }
+
+        public static  void GetGrupoRes_By_EscuelaJuegoNivel(int idEscuela, int idJuego, int nivel,int grado,string grupo, List<string> filterQueryLst, out int[] aciertos, out int[] errores)
+        {
+            
+            var aciertosLst = new List<int>();
+            var erroresLst = new List<int>();
+
+            foreach (string filter in filterQueryLst)
+            {
+                var filterSplit = filter.Split('|');
+                var response = new ResultadosData().GetGrupoGradoResBy_EscuelaJuegoNivel(idEscuela, idJuego, nivel,filterSplit[0].Trim(), filterSplit[1].Trim(), grado, grupo);
+                if (response.Code != 0)
+                {
+
+                }
+                else
+                {
+                    aciertosLst.Add(response.Result[0]);
+                    erroresLst.Add(response.Result[1]);
+                }
+            }
+
+            aciertos = aciertosLst.ToArray();
+            errores = erroresLst.ToArray();
         }
 
         private static List<string> GetPeriodos(string fechaIni, string fechaFin, out List<string> filterQuery)
@@ -243,13 +272,17 @@ namespace prjBlablabla
         {
             public bool success { get; private set; }
             public string[] periodos { get; private set; }
+            public int[] aciertos { get; private set; }
+            public int[] errores { get; private set; }
             public ResultadoPorNinoDTO[] result { get; private set; }
 
-            public ResultToNino(bool succes_, string[] periodos_,ResultadoPorNinoDTO[] resultados_)
+            public ResultToNino(bool succes_, string[] periodos_,ResultadoPorNinoDTO[] resultados_, int[] aciertos_, int[] errores_)
             {
                 success = succes_;
                 periodos = periodos_;
                 result = resultados_;
+                aciertos = aciertos_;
+                errores = errores_;
             }
         }
     }

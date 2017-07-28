@@ -33,7 +33,7 @@ namespace prjBlablabla
                                   + "<td>"
                                      + "<button type='button' id='btnEditarFrase' class='btn btn-success csBtnEditarEscuela' data-toggle='modal' data-target='#addEscuela' data-id='" + a.ID + "' data-nombre='" + a.Nombre + "' data-direccion='" + a.Direccion + "'><i class='fa fa-pencil'></i></button>"
                                      + "<button type='button' id='btnBorrarFrase' class='btn btn-danger csBtnBorrarEscuela' data-toggle='modal' data-target='#borrarEscuela' data-id='" + a.ID + "' ><i class='fa fa-trash-o'></i></button>"
-                                     + "<button type='button'  class='btn btn-info csBtnGrupos' data-toggle='modal'  data-id='" + a.ID + "' ><i class='fa fa-bars'></i></button>"
+                                     //+ "<button type='button'  class='btn btn-info csBtnGrupos' data-toggle='modal'  data-id='" + a.ID + "' ><i class='fa fa-bars'></i></button>"
                                   + "</td>"
                               + " </tr>";
                 }

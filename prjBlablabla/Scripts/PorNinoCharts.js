@@ -1,18 +1,15 @@
-﻿$(document).ready(function () {
+﻿var idEscuela = $("#ddListEscuelas option:selected").val();
+var idJuego = $("#game option:selected").val();
+var idNivel = $("#level option:selected").val();
+var initDate = '01/01/2017';
+var endDate = '31/03/2017';
 
-    var idEscuela = 0;
-    var idJuego = 0;
-    var idNivel = 0;
-    var initDate = "";
-    var endDate = "";
+$(document).ready(function () {
 
-    var chartlabels = ["1/1", "2/1", "1/2", "2/2", "1/3", "2/3", "1/4"];
-    var aciertos = [70, 60, 50, 40, 30, 20, 10];
-    var errores = [1, 2, 3, 4, 5, 6, 7];
+   
 
     $("#filterAply").click(function () {
-        
-        GetResults(idEscuela, $("#group option:selected").val(),idJuego, idNivel, initDate, endDate);
+        GetResults($("#ddListEscuelas option:selected").val(), $("#group option:selected").val(),idJuego, idNivel, initDate, endDate);
     });
 
 
@@ -58,7 +55,7 @@ function GetGruops(escuelaID) {
             contentType: 'application/json; charset=utf-8',
             dataType: 'json',
             success: function (response) {
-                console.log("success");
+                console.log("success GetGruops");
                 Obj = response;
                 var r = parseJSON(Obj.d);                
                 if (r.success == true) {
@@ -69,6 +66,10 @@ function GetGruops(escuelaID) {
                             text: arrayItem
                         }));
                     });
+
+                    //Se obtienen los resultados
+                    if ($("#group option:selected").val().length <= 3 )//validación cuando no se tengan grupos disponibles
+                        GetResults($("#ddListEscuelas option:selected").val(), $("#group option:selected").val(), $("#game option:selected").val(), $("#level option:selected").val(), initDate, endDate);
                 } else
                     alert("Error al cargar grupos:" + r.grupos[0]);
 
@@ -101,6 +102,9 @@ function GetResults(escuelaID, gradoGrupo, juegoId, nivelID, fechaIni, fechaFin)
                 console.log(r);
                 if (r.success == true) {
                     debugger;
+
+                    loadChart(r.periodos, r.aciertos, r.errores);
+
                     $("#tblPorNinoResults tr.result").remove();
                     var filas = r.result.length;
 
@@ -116,7 +120,7 @@ function GetResults(escuelaID, gradoGrupo, juegoId, nivelID, fechaIni, fechaFin)
                             r.result[i].Aciertos_x100 + "</td><td>" +
                             r.result[i].Errores_x100 + "</td><td>" +
                             r.result[i].Teimpo_reaccion + "</td><td>" +
-                            100 + "</td><td>" +
+                            r.result[i].Puntos + "</td><td>" +
                             1.2 + "</td></tr>";
 
                             $("#tblPorNinoResults").append(nuevafila)
@@ -132,6 +136,62 @@ function GetResults(escuelaID, gradoGrupo, juegoId, nivelID, fechaIni, fechaFin)
     } catch (err) {
         alert("Error solicitar captcha:" + err.message);
     }
+}
+
+function loadChart(labels_, aciertos_, errores_) {
+    debugger;
+    var lineChartData = {
+        labels: labels_,
+        datasets: [{
+            label: "Aciertos",
+            borderColor: "rgba(255, 0, 229, 0.38)",
+            backgroundColor: "rgba(255, 0, 229, 0.38)",
+            fill: false,
+            data: aciertos_,
+            yAxisID: "y-axis-1",
+        }, {
+            label: "Errores",
+            borderColor: "rgba(4, 156, 206, 0.38)",
+            backgroundColor: "rgba(4, 156, 206, 0.38)",
+            fill: false,
+            data: errores_,
+            yAxisID: "y-axis-2"
+        }]
+    };
+
+    var ctx = document.getElementById("canvas").getContext("2d");
+    window.myLine = Chart.Line(ctx, {
+        data: lineChartData,
+        options: {
+            responsive: true,
+            hoverMode: 'index',
+            stacked: false,
+            title: {
+                display: true,
+                text: 'Resultados'
+            },
+            scales: {
+                yAxes: [{
+                    type: "linear",
+                    display: true,
+                    position: "left",
+                    id: "y-axis-1",
+                }, {
+                    type: "linear",
+                    display: true,
+                    position: "right",
+                    id: "y-axis-2",
+
+                    gridLines: {
+                        drawOnChartArea: false,
+                    },
+                }],
+            }
+        }
+    });
+
+    //DRAW
+    window.myLine.update();
 }
 
 function parseJSON(data) {

@@ -1,15 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="PorGrupo.aspx.cs" Inherits="prjBlablabla.PorGrupo" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="Body" runat="server">
+    <link href="/Css/PorGrupo.css" rel="stylesheet" />
+    <script src="/Scripts/PorGrupoChart.js"></script>
 
     <div class="">
-        <div class="page-title">
-            <div class="title_left">
-                <h3>Concentrado de datos según Grupo escolar</h3>
-            </div>
-
-
-        </div>
+        <div class="page-title">            
+                <h3>Concentrado de datos según grupo.</h3>
+		</div>
 
         <div class="clearfix"></div>
 
@@ -29,7 +27,7 @@
                 </div>
 
                 <!-- top tiles -->
-                <div class="row tile_count">
+<%--                <div class="row tile_count">
                     <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
                         <span class="count_top"><i></i>República de Chipre</span>
                         <div class="count">Escuela</div>
@@ -60,35 +58,45 @@
                         <div class="count">12</div>
 
                     </div>
-                </div>
+                </div>--%>
                 <!-- /top tiles -->
 
                 <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="dashboard_graph">
-
-                            <div class="row x_title">
-                                <div class="col-md-6">
-                                    <h3>Gráfica de aciertos <small>por niño</small></h3>
-                                </div>
-                                <div class="col-md-6">
-                                    <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                                        <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                                        <span>Diciembre 30, 2016 - Enero 28, 2017</span> <b class="caret"></b>
+                                <form class="form-inline" role="form">
+                                     <!-- form group [Escuela] -->
+                                    <div class="form-group col-md-3">
+                                        <label class="filter-col" style="margin-right: 0;" for="pref-perpage">Escuela:</label>
+                                        <asp:DropDownList  ID="ddListEscuelas" runat="server" ClientIDMode="Static" class="form-control">
+                                        </asp:DropDownList>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                                <div id="chart_plot_Nino" class="demo-placeholder"></div>
-                            </div>
-
-
-                            <div class="clearfix"></div>
-                        </div>
+                                    <!-- form group [Grupo] -->
+                                    <div class="form-group col-md-2">
+                                        <label class="filter-col" style="margin-right: 0;" for="pref-perpage">Grupo:</label>
+                                        <select id="group" class="form-control">
+                                        </select>
+                                    </div>
+                                     <!-- form group [fecha] -->
+                                    <div class="form-group col-md-3">
+                                        <label class="filter-col" style="margin-right: 0;" for="pref-search">Fecha:</label>
+                                        <div id="reportrange">
+                                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                                            <span>Diciembre 30, 2016 - Enero 28, 2017</span> <b class="caret"></b>
+                                        </div>
+                                    </div>
+                                </form>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <button type="button" id="filterAply"class="btn btn-info filter-col">Aplicar</button>
                     </div>
+                </div>
+                <%--End Filtros--%>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                   
+                        <canvas id="canvas"></canvas>
 
                 </div>
+                <div class="clearfix"></div>
                 <br />
 
                 <div class="x_content">
@@ -96,11 +104,9 @@
 
 
                     <div class="table-responsive">
-                        <table class="table table-striped jambo_table bulk_action">
+                        <table class="table table-striped jambo_table bulk_action" id="tblPorGrupoResults">
                             <thead>
                                 <tr class="headings">
-
-                                    <th class="column-title">Escuela </th>
                                     <th class="column-title">Grado </th>
                                     <th class="column-title">n </th>
                                     <th class="column-title">Maculino </th>
@@ -120,72 +126,6 @@
                             </thead>
 
                             <tbody>
-                                <tr class="even pointer">
-
-                                    <td class=" ">República de Chipre</td>
-                                    <td class=" ">3 </td>
-                                    <td class=" ">28</td>
-                                    <td class=" ">16</td>
-                                    <td class=" ">12</td>
-                                    <td class=" ">3 / 4</td>
-                                    <td class=" ">LG</td>
-                                    <td class=" ">1</td>
-                                    <td class=" ">29</td>
-                                    <td class=" ">9.7</td>
-                                    <td class=" ">18</td>
-                                    <td class=" ">6.9</td>
-
-                                </tr>
-                                <tr class="even pointer">
-
-                                    <td class=" ">República de Chipre</td>
-                                    <td class=" ">3 </td>
-                                    <td class=" ">28</td>
-                                    <td class=" ">16</td>
-                                    <td class=" ">12</td>
-                                    <td class=" ">3 / 4</td>
-                                    <td class=" ">LG</td>
-                                    <td class=" ">1</td>
-                                    <td class=" ">29</td>
-                                    <td class=" ">9.7</td>
-                                    <td class=" ">18</td>
-                                    <td class=" ">6.9</td>
-
-                                </tr>
-
-                                <tr class="even pointer">
-
-                                    <td class=" ">República de Chipre</td>
-                                    <td class=" ">3 </td>
-                                    <td class=" ">28</td>
-                                    <td class=" ">16</td>
-                                    <td class=" ">12</td>
-                                    <td class=" ">3 / 4</td>
-                                    <td class=" ">LG</td>
-                                    <td class=" ">1</td>
-                                    <td class=" ">29</td>
-                                    <td class=" ">9.7</td>
-                                    <td class=" ">18</td>
-                                    <td class=" ">6.9</td>
-
-                                </tr>
-                                <tr class="even pointer">
-
-                                    <td class=" ">República de Chipre</td>
-                                    <td class=" ">3 </td>
-                                    <td class=" ">28</td>
-                                    <td class=" ">16</td>
-                                    <td class=" ">12</td>
-                                    <td class=" ">3 / 4</td>
-                                    <td class=" ">LG</td>
-                                    <td class=" ">1</td>
-                                    <td class=" ">29</td>
-                                    <td class=" ">9.7</td>
-                                    <td class=" ">18</td>
-                                    <td class=" ">6.9</td>
-
-                                </tr>
-
                             </tbody>
                         </table>
                     </div>
